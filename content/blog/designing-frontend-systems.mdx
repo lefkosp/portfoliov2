@@ -1,0 +1,28 @@
+export const metadata = {
+  title: "Designing Frontend Systems That Stay Legible",
+  description:
+    "How strong frontend systems keep product interfaces readable as teams and requirements grow.",
+  publishedAt: "2026-04-18",
+  readingTime: "8 min read",
+};
+
+Frontend architecture is less about creating a perfect abstraction and more
+about preserving clarity under change.
+
+## Start With Boundaries
+
+Useful systems define where decisions belong. Layout, data access, interaction
+state, and visual tokens should not compete for ownership inside the same
+component.
+
+When those boundaries stay visible, teams can move faster without turning the
+interface into a collection of local exceptions.
+
+## Make Repetition Intentional
+
+Not every repeated line needs an abstraction. The better question is whether
+the repetition describes a stable product rule or just a coincidence in the
+current screen.
+
+Frontend systems stay legible when abstractions are introduced after the rule is
+clear.

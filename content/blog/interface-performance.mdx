@@ -1,0 +1,26 @@
+export const metadata = {
+  title: "A Practical Approach to Interface Performance",
+  description:
+    "Performance work should start with user-facing constraints, not premature tuning.",
+  publishedAt: "2026-03-12",
+  readingTime: "7 min read",
+};
+
+Performance becomes useful when it is tied to the shape of the product
+experience.
+
+## Measure The Surface
+
+Before optimizing a component, understand what the user is waiting for. The
+critical path is usually smaller than the codebase and more specific than a
+framework checklist.
+
+Good performance work makes the important path obvious.
+
+## Keep The Model Small
+
+Large interfaces become slow when every state change is allowed to affect every
+layer. Smaller component boundaries and explicit data ownership often do more
+than isolated micro-optimizations.
+
+The goal is not clever code. The goal is predictable rendering.
