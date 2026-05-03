@@ -14,7 +14,7 @@ export function Hero() {
             <br />
             STATUS:{" "}
             <span className="text-foreground">
-              BUILDING INCLUSIVE DIGITAL EXPERIENCES
+              FRONTEND SYSTEMS. NO SHORTCUTS.
             </span>
             <span className="mt-2 block text-surface-variant">{"*/"}</span>
           </div>

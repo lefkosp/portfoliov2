@@ -16,7 +16,7 @@ const entries: ExperienceEntry[] = [
     role: "Software Developer (Frontend) — ClearSkies",
     period: "JUN_2025 -> PRESENT",
     description:
-      "Contributing to the modernization of a core internal platform by rebuilding the frontend using React, with a focus on improving usability, performance, and long-term maintainability. Rewriting the ClearSkies platform from C# and Ext.NET to a modern React-based stack while ramping up on a legacy system.",
+      "Leading the full rewrite of ClearSkies from C#/Ext.NET to a modern React architecture. Replaced a brittle legacy UI layer with composable component systems, reducing developer onboarding friction and improving cross-team maintainability for long-term platform evolution.",
     current: true,
   },
   {
@@ -25,7 +25,7 @@ const entries: ExperienceEntry[] = [
     role: "Frontend Developer",
     period: "APR_2022 -> MAY_2025",
     description:
-      "Spearheaded the development of an internal staffing module using Angular and TypeScript and collaborated closely with the Node.js backend team to ensure seamless API integration. Implemented mobile-first design principles to improve platform accessibility and user experience.",
+      "Architected and shipped an internal staffing module in Angular/TypeScript with tight Node.js API integration. Mobile-first implementation expanded platform reach to field teams, eliminating manual scheduling overhead and streamlining cross-department coordination.",
   },
   {
     status: "ARCHIVED_NODE",
@@ -33,7 +33,7 @@ const entries: ExperienceEntry[] = [
     role: "Owner & Digital Strategist",
     period: "SEP_2018 -> SEP_2021",
     description:
-      "Founded and operated an e-commerce platform with daily inventory and pricing management. Managed three social media channels with consistent content creation and community engagement, executing marketing strategies that secured strategic partnership opportunities.",
+      "Built and maintained a custom e-commerce platform end-to-end — product pages, landing flows, and conversion-optimized checkout. Owned the frontend layer alongside inventory systems and pricing logic. Business strategy and social channel growth drove recurring brand partnerships.",
   },
 ];
 

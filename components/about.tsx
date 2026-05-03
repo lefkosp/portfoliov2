@@ -1,13 +1,18 @@
 import { FadeIn } from "./fade-in";
 
 const techStack = [
-  { name: "HTML", level: "CORE" },
-  { name: "CSS", level: "CORE" },
-  { name: "SASS", level: "ADV" },
-  { name: "TAILWIND", level: "ADV" },
-  { name: "JS_ES6+", level: "V.ADV" },
-  { name: "REACT_ECO", level: "CORE" },
-  { name: "ANGULAR", level: "CORE" },
+  {
+    category: "LANG //",
+    items: ["HTML", "CSS", "SASS", "JS_ES6+", "TYPESCRIPT"],
+  },
+  {
+    category: "FRAMEWORKS //",
+    items: ["REACT_ECO", "ANGULAR", "TAILWIND"],
+  },
+  {
+    category: "TOOLING //",
+    items: ["VITE", "GIT", "JEST", "REST_APIS", "FIGMA"],
+  },
 ];
 
 export function About() {
@@ -30,15 +35,14 @@ export function About() {
           delay={100}
         >
           <p>
-            Hello, my name is Lefkos and I really enjoy creating things on the
-            internet. Ever since I can remember I have been fascinated by the
-            rapidly growing world of technology and it was always a dream of
-            mine to make myself part of it.
+            Frontend engineer specializing in modernizing legacy systems into
+            scalable, maintainable UI architectures. I've rebuilt enterprise
+            platforms from Ext.NET to React and shipped modular Angular systems
+            from the ground up.
           </p>
           <p>
-            I love learning about new and advanced technologies and also
-            applying critical thinking and problem-solving skills to overcome
-            modern challenges.
+            My work is driven by a commitment to accessible experiences
+            — interfaces that perform for everyone, not just the happy path.
           </p>
         </FadeIn>
 
@@ -49,17 +53,23 @@ export function About() {
           <div className="mb-4 font-mono text-technical-mono text-surface-variant">
             TECH_STACK //
           </div>
-          <ul className="flex flex-col gap-2 font-mono text-technical-mono text-on-surface">
-            {techStack.map((item) => (
-              <li
-                key={item.name}
-                className="flex justify-between border-b border-surface-variant/30 pb-2"
-              >
-                <span>{item.name}</span>
-                <span className="text-accent">{item.level}</span>
-              </li>
+          <div className="flex flex-col gap-4 font-mono text-technical-mono">
+            {techStack.map((group) => (
+              <div key={group.category}>
+                <div className="mb-2 text-accent">{group.category}</div>
+                <ul className="flex flex-col gap-2 text-on-surface">
+                  {group.items.map((item) => (
+                    <li
+                      key={item}
+                      className="border-b border-surface-variant/30 pb-2"
+                    >
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
-          </ul>
+          </div>
         </FadeIn>
       </div>
     </section>
