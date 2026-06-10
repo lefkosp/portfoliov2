@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { openTerminal } from "./terminal";
 
 type NavItem = {
   id: string;
@@ -64,7 +65,7 @@ export function SideNav() {
           L.PAPAPETROU
         </Link>
         <div className="font-display text-[11px] uppercase leading-tight tracking-widest text-accent">
-          FRONTEND_ENGINEER_V1.0
+          FRONTEND_ENGINEER
         </div>
       </div>
 
@@ -102,6 +103,22 @@ export function SideNav() {
           <span>STATUS // ONLINE</span>
           <span aria-hidden="true" className="inline-block h-2 w-2 bg-accent" />
         </div>
+
+        <button
+          type="button"
+          onClick={openTerminal}
+          className="group flex items-center justify-between border border-surface-variant px-4 py-3 font-display text-[11px] uppercase leading-tight tracking-widest text-on-surface-variant transition-colors duration-150 hover:border-accent hover:text-accent"
+        >
+          <span className="flex items-center gap-2">
+            <span aria-hidden="true" className="font-mono">
+              &gt;_
+            </span>
+            TERMINAL
+          </span>
+          <kbd className="font-mono text-[10px] text-surface-variant transition-colors duration-150 group-hover:text-accent">
+            ⌘K
+          </kbd>
+        </button>
 
         <a
           href="/cv.pdf"

@@ -3,15 +3,15 @@ import { FadeIn } from "./fade-in";
 const techStack = [
   {
     category: "LANG //",
-    items: ["HTML", "CSS", "SASS", "JS_ES6+", "TYPESCRIPT"],
+    items: ["TYPESCRIPT", "JS_ES6+", "SASS", "CSS", "HTML"],
   },
   {
     category: "FRAMEWORKS //",
-    items: ["REACT_ECO", "ANGULAR", "TAILWIND"],
+    items: ["REACT", "ANGULAR", "TAILWIND", "BOOTSTRAP"],
   },
   {
     category: "TOOLING //",
-    items: ["VITE", "GIT", "JEST", "REST_APIS", "FIGMA"],
+    items: ["VITE", "GIT", "REST_APIS", "FIGMA"],
   },
 ];
 
@@ -26,7 +26,7 @@ export function About() {
 
         <FadeIn className="col-span-4 lg:col-span-3">
           <h3 className="flex items-center gap-2 font-display text-label-caps uppercase text-accent">
-            <span className="h-[1px] w-4 bg-accent" /> IDENT
+            <span className="h-[1px] w-4 bg-accent" /> ABOUT
           </h3>
         </FadeIn>
 
@@ -36,13 +36,14 @@ export function About() {
         >
           <p>
             Frontend engineer specializing in modernizing legacy systems into
-            scalable, maintainable UI architectures. I've rebuilt enterprise
+            scalable, maintainable UI architectures. I&apos;ve rebuilt
+            enterprise
             platforms from Ext.NET to React and shipped modular Angular systems
             from the ground up.
           </p>
           <p>
-            My work is driven by a commitment to accessible experiences
-            — interfaces that perform for everyone, not just the happy path.
+            My work is driven by a commitment to accessible experiences.
+            Interfaces that perform for everyone, not just the happy path.
           </p>
         </FadeIn>
 

@@ -1,31 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #111125;
-  --foreground: #e2e0fb;
+  --background: #0d0b07;
+  --foreground: #efe6d3;
 }
 
 @theme inline {
-  --color-surface: #111125;
-  --color-surface-dim: #111125;
-  --color-surface-bright: #37374c;
-  --color-surface-container-lowest: #0c0c1f;
-  --color-surface-container-low: #191a2d;
-  --color-surface-container: #1d1e32;
-  --color-surface-container-high: #28283c;
-  --color-surface-container-highest: #333348;
-  --color-surface-variant: #333348;
-  --color-on-surface: #e2e0fb;
-  --color-on-surface-variant: #bacac3;
-  --color-outline: #85948e;
-  --color-outline-variant: #112240;
-  --color-accent: #64ffda;
-  --color-mint: #64ffda;
+  --color-surface: #0d0b07;
+  --color-surface-dim: #0d0b07;
+  --color-surface-bright: #463b22;
+  --color-surface-container-lowest: #080705;
+  --color-surface-container-low: #14110a;
+  --color-surface-container: #181408;
+  --color-surface-container-high: #221c10;
+  --color-surface-container-highest: #3a3220;
+  --color-surface-variant: #3a3220;
+  --color-on-surface: #efe6d3;
+  --color-on-surface-variant: #b3a88c;
+  --color-outline: #8a7d5e;
+  --color-outline-variant: #261f10;
+  --color-accent: #ffb000;
   --color-primary: #ffffff;
-  --color-primary-fixed: #5ffbd6;
-  --color-on-primary-fixed: #002019;
-  --color-secondary: #bcc6e5;
-  --color-error: #ffb4ab;
+  --color-primary-fixed: #ffb000;
+  --color-on-primary-fixed: #201600;
+  --color-secondary: #d8c9a3;
+  --color-error: #ff7b6b;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -128,9 +127,29 @@ body {
   text-size-adjust: 100%;
 }
 
+/* CRT scanlines — purely decorative, sits above content but never intercepts input */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgb(0 0 0 / 0.14) 3px
+  );
+}
+
 ::selection {
-  background: rgb(100 255 218 / 18%);
+  background: rgb(255 176 0 / 22%);
   color: var(--foreground);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 h1,

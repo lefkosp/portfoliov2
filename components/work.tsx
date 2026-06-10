@@ -9,11 +9,12 @@ export function Work() {
             SELECTED_WORKS
           </h3>
           <span className="hidden font-mono text-technical-mono text-surface-variant md:block">
-            QUERY_LIMIT: 4
+            PROJECTS: 04
           </span>
         </div>
       </FadeIn>
 
+      {/* 01 — Flagship: shipped full-stack AI product */}
       <FadeIn className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-150 group-hover:border-accent lg:col-span-7 lg:h-auto">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-150 group-hover:bg-transparent" />
@@ -33,18 +34,23 @@ export function Work() {
         </div>
 
         <div className="col-span-4 flex flex-col justify-center lg:col-span-4 lg:col-start-9">
-          <div className="mb-4 font-mono text-technical-mono text-accent">
+          <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
             &gt; ./TWEETPRENUER.exe
+            <span className="animate-pulse text-technical-mono">●</span>
+            <span className="text-surface-variant">LIVE</span>
           </div>
           <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
             TWEETPRENUER
           </h4>
           <p className="mb-6 font-sans text-body-md text-on-surface-variant">
-            An AI-powered app that, based on your recent tweets, generates a
-            business idea along with a business card based on it.
+            Shipped full-stack AI product: drop an X handle and get a
+            generated, shareable business card. Angular 19 frontend, Express +
+            MongoDB backend with response caching to control API spend, an
+            OpenAI prompt pipeline, and a screenshot share-to-X flow. 120+
+            cards generated in the wild.
           </p>
           <div className="mb-8 flex flex-wrap gap-2">
-            {["ANGULAR", "NODE.JS", "TS"].map((tag) => (
+            {["ANGULAR", "EXPRESS", "MONGODB", "OPENAI"].map((tag) => (
               <span
                 key={tag}
                 className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
@@ -53,41 +59,56 @@ export function Work() {
               </span>
             ))}
           </div>
-          <a
-            href="#work"
-            aria-label="Inspect TWEETPRENUER project"
-            className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-150 hover:border-accent hover:text-accent"
-          >
-            INIT_INSPECT
-            <span
-              aria-hidden="true"
-              className="inline-block transition-transform duration-150 group-hover/btn:translate-x-1"
+          <div className="flex flex-wrap items-center gap-6">
+            <a
+              href="https://tweetprenuer.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the live Tweetprenuer app"
+              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-150 hover:border-accent hover:text-accent"
             >
-              →
-            </span>
-          </a>
+              LAUNCH_APP
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-150 group-hover/btn:translate-x-1"
+              >
+                →
+              </span>
+            </a>
+            <a
+              href="https://github.com/lefkosp/tweetprenuer"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Tweetprenuer source code"
+              className="font-mono text-technical-mono text-surface-variant transition-colors duration-150 hover:text-accent"
+            >
+              SOURCE ↗
+            </a>
+          </div>
         </div>
       </FadeIn>
 
+      {/* 02 + 03 — Hackathon product and systems tooling */}
       <div className="mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <FadeIn className="group relative col-span-4 flex flex-col gap-8 border border-surface-variant p-8 transition-colors duration-150 hover:border-accent lg:col-span-5">
           <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
           <div>
             <div className="mb-2 font-mono text-technical-mono text-surface-variant">
-              MODULE_02
+              MODULE_02 // FINTECH_HACKATHON
             </div>
             <h4 className="font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
-              OMNIFOOD
+              PARKIT
             </h4>
           </div>
           <p className="flex-grow font-sans text-body-md text-on-surface-variant">
-            A landing page for a food delivery service with a subscription.
-            Explains how it works and showcases meal examples, testimonials and
-            more.
+            Parking marketplace PWA built for the Bank of Cyprus Fintech
+            Hackathon: live map with geolocation, booking flow, QR check-in,
+            realtime payment events over WebSockets, push notifications, and a
+            vendor dashboard — end to end against a deployed backend.
           </p>
           <div className="flex items-end justify-between">
             <div className="flex flex-wrap gap-2">
-              {["HTML", "CSS"].map((tag) => (
+              {["ANGULAR", "LEAFLET", "SOCKET.IO", "PWA"].map((tag) => (
                 <span
                   key={tag}
                   className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
@@ -97,8 +118,10 @@ export function Work() {
               ))}
             </div>
             <a
-              href="#work"
-              aria-label="Inspect OMNIFOOD project"
+              href="https://github.com/lefkosp/parkit"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Parkit source code"
               className="font-mono text-technical-mono text-surface-variant transition-colors duration-150 hover:text-accent"
             >
               ↗
@@ -115,19 +138,21 @@ export function Work() {
           <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
           <div>
             <div className="mb-2 font-mono text-technical-mono text-surface-variant">
-              MODULE_03
+              MODULE_03 // SYSTEMS_TOOLING
             </div>
             <h4 className="font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
-              MAPTY
+              CHANGE_RADAR
             </h4>
           </div>
           <p className="flex-grow font-sans text-body-md text-on-surface-variant">
-            A workout tracker app on the web. Choose between running and
-            cycling, then set the distance, duration and other properties.
+            On-prem CLI daemon that watches git repositories for risky changes
+            — SQL migrations, OpenAPI contract diffs, sensitive paths — and
+            posts prioritized Slack digests. SQLite-backed state, Dockerized,
+            covered by vitest suites. No code ever leaves the network.
           </p>
           <div className="flex items-end justify-between">
             <div className="flex flex-wrap gap-2">
-              {["HTML", "CSS", "JS"].map((tag) => (
+              {["TYPESCRIPT", "NODE_CLI", "SQLITE", "DOCKER"].map((tag) => (
                 <span
                   key={tag}
                   className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
@@ -136,17 +161,14 @@ export function Work() {
                 </span>
               ))}
             </div>
-            <a
-              href="#work"
-              aria-label="Inspect MAPTY project"
-              className="font-mono text-technical-mono text-surface-variant transition-colors duration-150 hover:text-accent"
-            >
-              ↗
-            </a>
+            <span className="font-mono text-technical-mono text-surface-variant">
+              PRE_RELEASE
+            </span>
           </div>
         </FadeIn>
       </div>
 
+      {/* 04 — OSS-style component library */}
       <FadeIn className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <div className="hidden lg:col-span-4 lg:block" />
 
@@ -157,18 +179,19 @@ export function Work() {
           <div className="flex flex-col items-start gap-12 lg:flex-row lg:items-center">
             <div className="flex-1">
               <div className="mb-2 font-mono text-technical-mono text-accent">
-                &gt; FORKIFY_MVC
+                &gt; FORMFORGE_LIB
               </div>
               <h4 className="mb-6 font-display text-headline-lg text-foreground transition-colors duration-150 group-hover:text-accent">
-                FORKIFY
+                FORMFORGE
               </h4>
               <p className="mb-6 font-sans text-body-md text-on-surface-variant">
-                A recipe app that lets you search what you are looking for,
-                upload your own, bookmark your favorites and change the
-                servings to your liking.
+                React form component library: 15+ composable, typed field
+                components behind a single declarative API, shipped with a
+                docs site featuring live previews, copyable examples, and a
+                visual form builder.
               </p>
               <div className="flex flex-wrap gap-2">
-                {["HTML", "CSS", "JS"].map((tag) => (
+                {["REACT", "TYPESCRIPT", "DESIGN_SYSTEMS"].map((tag) => (
                   <span
                     key={tag}
                     className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
@@ -179,8 +202,10 @@ export function Work() {
               </div>
             </div>
             <a
-              href="#work"
-              aria-label="Inspect FORKIFY project"
+              href="https://github.com/lefkosp/formforge"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View FormForge source code"
               className="flex h-16 w-16 shrink-0 items-center justify-center border border-surface-variant text-2xl transition-colors duration-150 group-hover:border-accent hover:bg-accent hover:text-on-primary-fixed"
             >
               <span

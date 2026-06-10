@@ -29,7 +29,7 @@ export function Contact() {
             <span aria-hidden="true" className="font-mono">
               &gt;
             </span>
-            PING_SERVER
+            SEND_MESSAGE
           </a>
         </div>
       </FadeIn>
