@@ -12,7 +12,7 @@ export async function Blog() {
           <h3 className="font-display text-headline-lg uppercase text-foreground">
             LOGS // KNOWLEDGE_BASE
           </h3>
-          <span className="hidden font-mono text-technical-mono text-surface-variant md:block">
+          <span className="hidden font-mono text-technical-mono text-outline md:block">
             ENTRIES: {posts.length.toString().padStart(2, "0")}
           </span>
         </div>
@@ -36,7 +36,7 @@ export async function Blog() {
                   href={`/blog/${post.slug}`}
                   className="group grid grid-cols-4 gap-gutter py-8 transition-colors duration-150 lg:grid-cols-9"
                 >
-                  <span className="col-span-4 font-mono text-technical-mono text-surface-variant lg:col-span-1">
+                  <span className="col-span-4 font-mono text-technical-mono text-outline lg:col-span-1">
                     {(index + 1).toString().padStart(2, "0")}
                   </span>
 
@@ -52,7 +52,7 @@ export async function Blog() {
                     </p>
                   </div>
 
-                  <div className="col-span-4 flex flex-col gap-2 font-mono text-technical-mono uppercase text-surface-variant lg:col-span-3 lg:items-end lg:text-right">
+                  <div className="col-span-4 flex flex-col gap-2 font-mono text-technical-mono uppercase text-outline lg:col-span-3 lg:items-end lg:text-right">
                     <span>{post.publishedAt}</span>
                     <span>{post.readingTime}</span>
                   </div>

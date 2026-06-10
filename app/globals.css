@@ -17,7 +17,7 @@
   --color-surface-variant: #3a3220;
   --color-on-surface: #efe6d3;
   --color-on-surface-variant: #b3a88c;
-  --color-outline: #8a7d5e;
+  --color-outline: #9a8c6d;
   --color-outline-variant: #261f10;
   --color-accent: #ffb000;
   --color-primary: #ffffff;
@@ -34,15 +34,17 @@
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono",
     monospace;
 
-  --text-headline-xl: 72px;
+  /* Fluid headline scale — fixed px sizes caused horizontal overflow on
+     narrow viewports (single tokens like SELECTED_WORKS can't wrap). */
+  --text-headline-xl: clamp(36px, 9vw, 72px);
   --text-headline-xl--line-height: 1.1;
   --text-headline-xl--letter-spacing: -0.04em;
   --text-headline-xl--font-weight: 700;
-  --text-headline-lg: 48px;
+  --text-headline-lg: clamp(26px, 6.5vw, 48px);
   --text-headline-lg--line-height: 1.2;
   --text-headline-lg--letter-spacing: -0.02em;
   --text-headline-lg--font-weight: 600;
-  --text-headline-md: 32px;
+  --text-headline-md: clamp(21px, 5vw, 32px);
   --text-headline-md--line-height: 1.3;
   --text-headline-md--font-weight: 500;
   --text-body-lg: 18px;
@@ -60,8 +62,10 @@
   --spacing: 4px;
   --spacing-gutter: 24px;
   --spacing-margin-edge: 48px;
-  --spacing-section: 160px;
-  --spacing-section-gap: 160px;
+  /* Responsive section rhythm — 160px reads as structure on desktop but as
+     dead space on phones. */
+  --spacing-section: clamp(48px, 12vw, 160px);
+  --spacing-section-gap: clamp(48px, 12vw, 160px);
 
   --radius-xs: 0px;
   --radius-sm: 0px;
@@ -103,6 +107,7 @@ html {
   min-height: 100%;
   background: var(--background);
   color-scheme: dark;
+  interpolate-size: allow-keywords;
   font-feature-settings: "kern";
   text-rendering: geometricprecision;
   -webkit-font-smoothing: antialiased;
@@ -125,6 +130,9 @@ body {
   font-size: 16px;
   line-height: 1.6;
   text-size-adjust: 100%;
+  /* Safety net: any residual overflow must never widen the page and
+     shift the layout off-center on small screens. */
+  overflow-x: clip;
 }
 
 /* CRT scanlines — purely decorative, sits above content but never intercepts input */
@@ -181,6 +189,23 @@ select {
   font: inherit;
 }
 
+/* Animated <details> disclosure — progressive enhancement; browsers
+   without ::details-content support fall back to instant toggle. */
+details::details-content {
+  block-size: auto;
+  overflow: clip;
+  opacity: 1;
+  transition:
+    block-size 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.25s ease,
+    content-visibility 0.35s allow-discrete;
+}
+
+details:not([open])::details-content {
+  block-size: 0;
+  opacity: 0;
+}
+
 @keyframes fade-in-up {
   from {
     opacity: 0;
@@ -230,5 +255,9 @@ select {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+
+  details::details-content {
+    transition: none !important;
   }
 }

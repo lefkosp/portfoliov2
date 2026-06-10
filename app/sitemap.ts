@@ -1,10 +1,12 @@
 import type { MetadataRoute } from "next";
 import { getBlogPosts } from "@/lib/blog";
+import { getDecisions } from "@/lib/decisions";
 
 const BASE_URL = "https://lefkos.dev";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const posts = await getBlogPosts();
+  const decisions = await getDecisions();
 
   return [
     {
@@ -22,6 +24,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...posts.map((post) => ({
       url: `${BASE_URL}/blog/${post.slug}`,
       lastModified: new Date(post.publishedAt),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    })),
+    ...decisions.map((decision) => ({
+      url: `${BASE_URL}/decisions/${decision.slug}`,
+      lastModified: new Date(decision.date),
       changeFrequency: "yearly" as const,
       priority: 0.6,
     })),

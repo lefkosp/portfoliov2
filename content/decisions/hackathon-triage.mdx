@@ -1,0 +1,50 @@
+export const metadata = {
+  id: "ADR-004",
+  title: "In a hackathon, fake the familiar — build the differentiator",
+  date: "2025-09-25",
+  status: "ACCEPTED",
+  context:
+    "48-hour fintech hackathon. A parking marketplace PWA needed maps, booking, QR check-in, realtime payments, push notifications, vendor onboarding — and auth.",
+  options:
+    "Build everything shallowly // build auth properly and demo less // hardcode identity, build the demo flows end-to-end",
+  decision:
+    "Hardcode the current user, mock the payment settlement, and spend the time making the differentiating flows real: live map, booking, QR check-in/out, WebSocket payment events, push notifications.",
+  tradeoff:
+    "The codebase ships with a hardcoded user ID and mock payment paths — embarrassing to read, disqualifying for production, perfect for a demo.",
+  outcome:
+    "The demo walked through the full user journey — find, book, check in, pay, vendor dashboard — without a single 'imagine this part works' moment.",
+  revisit:
+    "The mocks should have been flagged louder in code (one MOCK constant, one place) — they were scattered enough that cleaning up afterwards took real archaeology.",
+};
+
+Every hackathon team faces the same budget problem: the judges' mental demo
+lasts three minutes, and you have 48 hours to fill it. The mistake is spending
+those hours on the parts every judge has already seen a thousand times. Nobody
+is impressed by a login screen.
+
+## The triage logic
+
+I sorted every feature into two buckets. **Familiar:** auth, account
+management, payment settlement — things judges assume work because they work
+everywhere. **Differentiating:** the live parking map, the QR check-in
+ritual, payment events arriving over a WebSocket while the ticket updates on
+screen. The familiar bucket got hardcoded or mocked; the differentiating
+bucket got built end-to-end against a genuinely deployed backend.
+
+That last part matters: mocking *everything* makes a demo brittle in the
+opposite direction — judges can smell a Figma prototype wearing a trench coat.
+The realtime flows being real is what made the fakes invisible.
+
+## What this is really about
+
+This is the same skill as production engineering, inverted. In production you
+ask "what breaks if this is wrong?"; in a demo you ask "what breaks the
+*story* if this is missing?" Both are risk-prioritized resource allocation.
+Being explicit about which mode you're in — and never confusing the two — is
+the entire game.
+
+## The rule
+
+Scope cuts are architecture decisions and deserve the same rigor: made once,
+made visibly, made in one place. A hardcoded user ID is a fine hackathon
+decision and a terrible hackathon *accident*.

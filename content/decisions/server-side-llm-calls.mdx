@@ -1,0 +1,50 @@
+export const metadata = {
+  id: "ADR-001",
+  title: "LLM calls belong behind a backend, not in the browser",
+  date: "2025-02-08",
+  status: "ACCEPTED",
+  context:
+    "Two AI side projects, 16 months apart. The first shipped fast by calling OpenAI directly from the Angular client.",
+  options:
+    "Browser-side calls with a gitignored key // proxy through a minimal backend // no AI feature at all",
+  decision:
+    "All LLM and third-party API traffic moves behind an Express backend. The client only ever talks to my API.",
+  tradeoff:
+    "A whole second deployable (server, env management, CORS, hosting) for what was a weekend project.",
+  outcome:
+    "Key exposure eliminated, per-user rate limiting became possible, and the backend enabled caching that cut API spend.",
+  revisit:
+    "Should have been the architecture from day one — the 'temporary' browser-side shortcut shipped to production.",
+};
+
+In 2023 I built an AI business-idea generator and made the classic move: the
+OpenAI SDK ran in the browser with `dangerouslyAllowBrowser: true` and the key
+in a gitignored file. It worked, it demoed well, and it was one `View Source`
+away from someone draining my quota. The flag name was telling me something
+and I chose not to listen.
+
+## The forcing function
+
+The successor project, Tweetprenuer, needed two upstream APIs — SocialData
+for profile and tweet retrieval, OpenAI for generation. Doubling down on
+browser-side calls would have meant exposing two keys, and the SocialData
+billing model made abuse genuinely expensive. The cost of doing it right had
+stayed constant; the cost of doing it wrong had doubled.
+
+## What the backend actually bought
+
+The obvious win was key security, but the unplanned wins were bigger:
+
+- **Caching.** Results could be persisted in MongoDB, so repeat lookups cost
+  zero API spend (see ADR-002).
+- **A contract.** The client consumes one stable response shape, and upstream
+  API changes get absorbed server-side.
+- **Abuse control.** Rate limiting and input validation live where the user
+  can't reach them.
+
+## The rule
+
+User-facing clients never hold secrets. If a feature seems to need a key in
+the browser, the feature actually needs a backend — however small. The
+"temporary" exception does not exist: mine made it to production and stayed
+there for over a year.

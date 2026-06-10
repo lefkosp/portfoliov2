@@ -83,7 +83,7 @@ function ExperienceRoleBlock({
           aria-hidden="true"
           className="absolute left-0 top-[10px] h-[1px] w-3 bg-surface-variant"
         />
-        <div className="mb-1 flex flex-wrap items-center gap-3 font-mono text-technical-mono text-surface-variant">
+        <div className="mb-1 flex flex-wrap items-center gap-3 font-mono text-technical-mono text-outline">
           <span
             className={
               role.current ? "text-accent" : "text-on-surface-variant"
@@ -145,7 +145,7 @@ export function Experience() {
                       : "bg-surface-variant group-hover:bg-on-surface-variant"
                   }`}
                 />
-                <div className="mb-2 flex flex-wrap items-center gap-3 font-mono text-technical-mono text-surface-variant">
+                <div className="mb-2 flex flex-wrap items-center gap-3 font-mono text-technical-mono text-outline">
                   <span>{entry.status}</span>
                   <span aria-hidden="true">{"//"}</span>
                   <span

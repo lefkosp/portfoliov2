@@ -1,0 +1,46 @@
+export const metadata = {
+  id: "ADR-005",
+  title: "One declarative API beats fifteen flexible components",
+  date: "2026-05-21",
+  status: "ACCEPTED",
+  context:
+    "A React form library with 15+ field types. Forms are where UI codebases go to die — every team hand-wires the same validation, layout, and state plumbing slightly differently.",
+  options:
+    "Export polished field components and let consumers compose // expose a render-prop/headless core // single declarative schema API that renders the whole form",
+  decision:
+    "Consumers describe the form as data — fields, types, validation — and the library owns rendering, layout, and state. Individual components stay internal.",
+  tradeoff:
+    "Escape hatches get harder. The weird one-off form that needs a custom layout fights the abstraction instead of being helped by it.",
+  outcome:
+    "A form goes from a schema object to rendered, validated UI with no wiring code. The docs site demos this live — schema on the left, form on the right.",
+  revisit:
+    "The API needs a designed escape hatch (custom field renderers) before public release — 'fight the abstraction' is acceptable for v0, not v1.",
+};
+
+Exporting components is easy; the consumer pays for it forever. Every form
+built from loose fields re-makes the same decisions — error placement, label
+layout, submit-state handling — and drifts a little. Multiply by every
+developer on a team and forms become the least consistent, most bug-dense
+surface in the app.
+
+## Why declarative won
+
+The insight is that forms are unusually *describable*. Unlike general UI, a
+form is almost always "an ordered list of typed fields with validation rules"
+— which is data, not markup. When the input is data, the library can own
+everything consumers usually get subtly wrong: accessibility wiring,
+error-message placement, disabled-state propagation, layout rhythm.
+Consistency stops being a code-review battle and becomes a property of the
+system.
+
+The cost is real: declarative APIs have a complexity cliff. The 95% of forms
+that fit the schema get dramatically cheaper; the 5% that don't get more
+expensive. I took that trade knowingly — but the revisit note stands, because
+a library without a designed escape hatch eventually gets forked by its own
+users.
+
+## The rule
+
+When a UI pattern is describable as data, ship the description format — not
+the parts bin. And decide where the complexity cliff is *on purpose*, with an
+escape hatch at the edge, before someone falls off it.

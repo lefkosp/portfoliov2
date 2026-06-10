@@ -8,11 +8,11 @@ export default function NotFound() {
 
         <div className="col-span-4 flex flex-col gap-8 lg:col-span-8">
           <div className="animate-fade-in-up border-l border-surface-variant pl-4 font-mono text-technical-mono text-accent">
-            <span className="mb-2 block text-surface-variant">{"/*"}</span>
+            <span className="mb-2 block text-outline">{"/*"}</span>
             ERROR_CODE: <span className="text-error">404</span>
             <br />
             STATUS: <span className="text-foreground">RESOURCE_NOT_FOUND</span>
-            <span className="mt-2 block text-surface-variant">{"*/"}</span>
+            <span className="mt-2 block text-outline">{"*/"}</span>
           </div>
 
           <h1
@@ -20,7 +20,7 @@ export default function NotFound() {
             style={{ animationDelay: "150ms" }}
           >
             SIGNAL <br />
-            <span className="text-surface-variant">LOST</span>
+            <span className="text-outline">LOST</span>
           </h1>
 
           <p

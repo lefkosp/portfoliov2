@@ -51,7 +51,7 @@ export function About() {
           className="relative col-span-4 border border-surface-variant p-6 lg:col-span-3 lg:col-start-10"
           delay={200}
         >
-          <div className="mb-4 font-mono text-technical-mono text-surface-variant">
+          <div className="mb-4 font-mono text-technical-mono text-outline">
             TECH_STACK //
           </div>
           <div className="flex flex-col gap-4 font-mono text-technical-mono">

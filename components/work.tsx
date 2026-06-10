@@ -8,7 +8,7 @@ export function Work() {
           <h3 className="font-display text-headline-lg uppercase text-foreground">
             SELECTED_WORKS
           </h3>
-          <span className="hidden font-mono text-technical-mono text-surface-variant md:block">
+          <span className="hidden font-mono text-technical-mono text-outline md:block">
             PROJECTS: 04
           </span>
         </div>
@@ -37,7 +37,7 @@ export function Work() {
           <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
             &gt; ./TWEETPRENUER.exe
             <span className="animate-pulse text-technical-mono">●</span>
-            <span className="text-surface-variant">LIVE</span>
+            <span className="text-outline">LIVE</span>
           </div>
           <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
             TWEETPRENUER
@@ -80,7 +80,7 @@ export function Work() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View Tweetprenuer source code"
-              className="font-mono text-technical-mono text-surface-variant transition-colors duration-150 hover:text-accent"
+              className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
             >
               SOURCE ↗
             </a>
@@ -93,7 +93,7 @@ export function Work() {
         <FadeIn className="group relative col-span-4 flex flex-col gap-8 border border-surface-variant p-8 transition-colors duration-150 hover:border-accent lg:col-span-5">
           <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
           <div>
-            <div className="mb-2 font-mono text-technical-mono text-surface-variant">
+            <div className="mb-2 font-mono text-technical-mono text-outline">
               MODULE_02 // FINTECH_HACKATHON
             </div>
             <h4 className="font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
@@ -122,7 +122,7 @@ export function Work() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View Parkit source code"
-              className="font-mono text-technical-mono text-surface-variant transition-colors duration-150 hover:text-accent"
+              className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
             >
               ↗
             </a>
@@ -137,7 +137,7 @@ export function Work() {
         >
           <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
           <div>
-            <div className="mb-2 font-mono text-technical-mono text-surface-variant">
+            <div className="mb-2 font-mono text-technical-mono text-outline">
               MODULE_03 // SYSTEMS_TOOLING
             </div>
             <h4 className="font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
@@ -161,7 +161,7 @@ export function Work() {
                 </span>
               ))}
             </div>
-            <span className="font-mono text-technical-mono text-surface-variant">
+            <span className="font-mono text-technical-mono text-outline">
               PRE_RELEASE
             </span>
           </div>

@@ -44,6 +44,15 @@ const FILES: Record<string, string[]> = {
     "GITHUB :: github.com/lefkosp",
     "send a signal — response time is usually < 24h.",
   ],
+  "decisions.log": [
+    "ADR-001 :: LLM calls belong behind a backend, not in the browser",
+    "ADR-002 :: Cache AI generations — staleness is a feature",
+    "ADR-003 :: AI scaffolds discover the product, they don't ship it",
+    "ADR-004 :: In a hackathon, fake the familiar — build the differentiator",
+    "ADR-005 :: One declarative API beats fifteen flexible components",
+    "",
+    "full records :: 'open decisions'",
+  ],
 };
 
 const SECTION_TARGETS: Record<string, string> = {
@@ -51,6 +60,7 @@ const SECTION_TARGETS: Record<string, string> = {
   about: "/#about",
   experience: "/#experience",
   work: "/#work",
+  decisions: "/#decisions",
   blog: "/#blog",
   contact: "/#contact",
 };
@@ -158,7 +168,7 @@ export function Terminal() {
           break;
         case "ls":
           print([
-            "about.txt  stack.txt  experience.log  contact.txt  cv.pdf",
+            "about.txt  stack.txt  experience.log  decisions.log  contact.txt  cv.pdf",
           ]);
           break;
         case "cat": {
@@ -298,14 +308,16 @@ export function Terminal() {
       />
 
       <div className="relative flex w-full max-w-2xl flex-col border border-surface-variant bg-surface-container-lowest">
-        <div className="flex items-center justify-between border-b border-surface-variant px-4 py-3 font-mono text-technical-mono">
-          <span className="text-accent">TERMINAL // GUEST_SESSION</span>
+        <div className="flex items-center justify-between gap-4 border-b border-surface-variant px-4 py-3 font-mono text-technical-mono">
+          <span className="truncate text-accent">
+            TERMINAL // GUEST_SESSION
+          </span>
           <button
             type="button"
             onClick={() => setIsOpen(false)}
-            className="text-surface-variant transition-colors duration-150 hover:text-accent"
+            className="shrink-0 text-outline transition-colors duration-150 hover:text-accent"
           >
-            ESC_TO_CLOSE
+            ESC
           </button>
         </div>
 

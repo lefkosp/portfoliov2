@@ -15,18 +15,24 @@ const navItems: NavItem[] = [
   { id: "about", label: "01_ABOUT", href: "/#about" },
   { id: "experience", label: "02_EXPERIENCE", href: "/#experience" },
   { id: "work", label: "03_WORK", href: "/#work" },
-  { id: "blog", label: "04_BLOG", href: "/#blog" },
-  { id: "contact", label: "05_CONTACT", href: "/#contact" },
+  { id: "decisions", label: "04_DECISIONS", href: "/#decisions" },
+  { id: "blog", label: "05_BLOG", href: "/#blog" },
+  { id: "contact", label: "06_CONTACT", href: "/#contact" },
 ];
 
 export function SideNav() {
   const pathname = usePathname();
   const isBlogRoute = pathname?.startsWith("/blog") ?? false;
+  const isDecisionsRoute = pathname?.startsWith("/decisions") ?? false;
   const [scrollSection, setScrollSection] = useState<string | null>(null);
-  const activeSection = isBlogRoute ? "blog" : scrollSection;
+  const activeSection = isBlogRoute
+    ? "blog"
+    : isDecisionsRoute
+      ? "decisions"
+      : scrollSection;
 
   useEffect(() => {
-    if (isBlogRoute) return;
+    if (isBlogRoute || isDecisionsRoute) return;
 
     const sections = navItems
       .map((item) => document.getElementById(item.id))
@@ -50,7 +56,7 @@ export function SideNav() {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [isBlogRoute]);
+  }, [isBlogRoute, isDecisionsRoute]);
 
   return (
     <nav
@@ -115,7 +121,7 @@ export function SideNav() {
             </span>
             TERMINAL
           </span>
-          <kbd className="font-mono text-[10px] text-surface-variant transition-colors duration-150 group-hover:text-accent">
+          <kbd className="font-mono text-[10px] text-outline transition-colors duration-150 group-hover:text-accent">
             ⌘K
           </kbd>
         </button>

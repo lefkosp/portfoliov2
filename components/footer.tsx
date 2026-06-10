@@ -38,7 +38,7 @@ export function Footer() {
           <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">
             &copy;2026_TERMINAL_LEFKOS_PAPAPETROU
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-surface-variant">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-outline">
             BUILD // {buildHash}
           </span>
         </div>

@@ -1,0 +1,48 @@
+export const metadata = {
+  id: "ADR-003",
+  title: "AI scaffolds are for discovering the product, not shipping it",
+  date: "2025-12-22",
+  status: "ACCEPTED",
+  context:
+    "A habit-tracking app idea with fuzzy requirements. I needed to find out what the product actually was before committing to an architecture.",
+  options:
+    "Hand-build from a spec doc // AI-scaffold and ship the scaffold // AI-scaffold to explore, then rebuild by hand",
+  decision:
+    "Prototype the full product surface in an AI scaffold (Lovable), treat it as a disposable spec, and hand-write the production app natively.",
+  tradeoff:
+    "Building the product twice. The prototype's 40+ generated UI components and all its iteration history get thrown away.",
+  outcome:
+    "The prototype answered the product questions (which flows mattered, which didn't) in days. The native rewrite started with a real spec instead of guesses.",
+  revisit:
+    "I briefly tried migrating the prototype's code directly to mobile — got ~40% through before accepting that porting scaffold code defeats the purpose. Should have planned the rewrite from day one.",
+};
+
+The fastest way to find out what an app wants to be is to use a version of it.
+For a habit tracker with social mechanics — streaks, friend nudges, app
+shields — the open questions weren't technical, they were product questions:
+does the nudge loop feel motivating or annoying? Is the reflection flow worth
+its screen space? No spec document answers those; a working prototype does.
+
+## Why not ship the prototype
+
+AI scaffolds optimize for demonstration, not maintenance. The generated
+codebase had the entire component library vendored in, state scattered through
+localStorage, and a 700-line page component — fine for learning, hostile to
+evolution. More importantly, shipping it would have meant my production
+codebase was something I'd *reviewed* rather than something I'd *designed*.
+For a product I intended to maintain, that tradeoff runs the wrong way.
+
+## The discipline
+
+The prototype is a spec, so it gets spec treatment: I extracted a feature
+document from it, then started the native app clean — hand-written components,
+deliberate state boundaries, animations built for the platform instead of
+ported from the web. The prototype stays runnable as a reference, and nothing
+in it is load-bearing.
+
+## The rule
+
+Use generative tools where iteration speed matters most — discovering
+requirements — and hand-build where judgment matters most: the architecture
+you'll live with. The boundary between the two should be a deliberate
+decision, not wherever the scaffold happened to run out of steam.

@@ -5,7 +5,7 @@ export function ReferenceBlock() {
     <section className="mt-24 w-full px-6 lg:px-margin-edge">
       <FadeIn>
         <div className="relative h-[400px] w-full overflow-hidden border border-surface-variant bg-surface-container-lowest">
-          <div className="absolute left-4 top-4 z-10 bg-background px-2 py-1 font-mono text-technical-mono text-surface-variant">
+          <div className="absolute left-4 top-4 z-10 bg-background px-2 py-1 font-mono text-technical-mono text-outline">
             REF_SOURCE // ARCHIVE_01
           </div>
 
@@ -35,7 +35,7 @@ export function ReferenceBlock() {
             }}
           />
 
-          <div className="absolute bottom-4 right-4 font-mono text-technical-mono text-surface-variant opacity-60">
+          <div className="absolute bottom-4 right-4 font-mono text-technical-mono text-outline opacity-60">
             GRID_ARCHIVE.01 / 1440 x 400
           </div>
         </div>

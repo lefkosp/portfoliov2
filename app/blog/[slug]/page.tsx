@@ -71,7 +71,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <div className="col-span-4 lg:col-span-8">
           <header className="mb-20 flex flex-col gap-8 border-b border-surface-variant pb-12">
-            <div className="flex items-center gap-4 font-mono text-technical-mono uppercase text-surface-variant">
+            <div className="flex items-center gap-4 font-mono text-technical-mono uppercase text-outline">
               <span>{post.publishedAt}</span>
               <span>{"//"}</span>
               <span>{post.readingTime}</span>
