@@ -1,6 +1,6 @@
 export const metadata = {
   id: "ADR-002",
-  title: "Cache AI generations — staleness is a feature, not a bug",
+  title: "Cache AI generations: staleness is a feature, not a bug",
   date: "2025-02-21",
   status: "ACCEPTED",
   context:
@@ -10,7 +10,7 @@ export const metadata = {
   decision:
     "Persist every generated result in MongoDB keyed by username. Repeat requests return the stored card instead of erroring or regenerating.",
   tradeoff:
-    "Users who want a fresh card for the same handle don't get one — the result is frozen at first generation.",
+    "Users who want a fresh card for the same handle don't get one. The result is frozen at first generation.",
   outcome:
     "Repeat lookups cost zero API spend during the traffic spike, and the stored results powered a new feature: the public carousel of past cards.",
   revisit:
@@ -20,7 +20,7 @@ export const metadata = {
 The unit economics of a free AI toy are unforgiving: every click costs real
 money, and a traffic spike is indistinguishable from a billing incident. When
 Tweetprenuer started getting shared on X, the same handful of usernames were
-being submitted over and over — friends checking each other's cards.
+being submitted over and over, friends checking each other's cards.
 
 ## The shape of the decision
 
@@ -34,7 +34,7 @@ logic to get wrong.
 ## The compounding win
 
 Stored results turned out to be content. The landing page gained a scrolling
-carousel of previously generated cards — social proof that doubled as a
+carousel of previously generated cards, social proof that doubled as a
 feature, built entirely from what the cache already held. A cost-control
 measure became the product's best onboarding tool.
 
@@ -42,5 +42,5 @@ measure became the product's best onboarding tool.
 
 Before reaching for TTLs and invalidation, ask whether the cached thing has
 any meaningful freshness requirement at all. For generative output it often
-doesn't — and a permanent store of past generations is frequently worth more
+doesn't, and a permanent store of past generations is frequently worth more
 as product surface than as a cache.

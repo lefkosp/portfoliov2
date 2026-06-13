@@ -17,7 +17,7 @@ type Line = {
 };
 
 const WELCOME: Line[] = [
-  { type: "output", text: "LEFKOS_OS v2.0 — guest session established." },
+  { type: "output", text: "LEFKOS_OS v2.0: guest session established." },
   { type: "output", text: "type 'help' for available commands." },
 ];
 
@@ -29,9 +29,9 @@ const FILES: Record<string, string[]> = {
     "Shipped modular Angular systems from the ground up.",
   ],
   "stack.txt": [
-    "LANG       :: TYPESCRIPT, JS_ES6+, SASS, CSS, HTML",
-    "FRAMEWORKS :: REACT, ANGULAR, TAILWIND, BOOTSTRAP",
-    "TOOLING    :: VITE, GIT, REST_APIS, FIGMA",
+    "CORE     :: TYPESCRIPT, REACT, ANGULAR, NEXT.JS",
+    "PLATFORM :: NODE.JS, REST, WEBSOCKETS",
+    "DELIVERY :: DESIGN_SYSTEMS, GIT, VITE",
   ],
   "experience.log": [
     "[2026] ODYSSEY CYBERSECURITY :: Lead Software Developer (Frontend)",
@@ -42,13 +42,13 @@ const FILES: Record<string, string[]> = {
   "contact.txt": [
     "EMAIL  :: hello@lefkos.dev",
     "GITHUB :: github.com/lefkosp",
-    "send a signal — response time is usually < 24h.",
+    "send a signal. Response time is usually < 24h.",
   ],
   "decisions.log": [
     "ADR-001 :: LLM calls belong behind a backend, not in the browser",
-    "ADR-002 :: Cache AI generations — staleness is a feature",
+    "ADR-002 :: Cache AI generations: staleness is a feature",
     "ADR-003 :: AI scaffolds discover the product, they don't ship it",
-    "ADR-004 :: In a hackathon, fake the familiar — build the differentiator",
+    "ADR-004 :: In a hackathon, fake the familiar, build the differentiator",
     "ADR-005 :: One declarative API beats fifteen flexible components",
     "",
     "full records :: 'open decisions'",
@@ -175,7 +175,7 @@ export function Terminal() {
           if (!arg) {
             print(["usage: cat <file>"], "error");
           } else if (arg === "cv.pdf") {
-            print([`cat: ${arg}: binary file — try 'open cv.pdf'`], "error");
+            print([`cat: ${arg}: binary file. Try 'open cv.pdf'`], "error");
           } else if (FILES[arg]) {
             print(FILES[arg]);
           } else {

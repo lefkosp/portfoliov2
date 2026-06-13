@@ -2,16 +2,16 @@ import { FadeIn } from "./fade-in";
 
 const techStack = [
   {
-    category: "LANG //",
-    items: ["TYPESCRIPT", "JS_ES6+", "SASS", "CSS", "HTML"],
+    category: "CORE //",
+    items: ["TYPESCRIPT", "REACT", "ANGULAR", "NEXT.JS"],
   },
   {
-    category: "FRAMEWORKS //",
-    items: ["REACT", "ANGULAR", "TAILWIND", "BOOTSTRAP"],
+    category: "PLATFORM //",
+    items: ["NODE.JS", "REST", "WEBSOCKETS"],
   },
   {
-    category: "TOOLING //",
-    items: ["VITE", "GIT", "REST_APIS", "FIGMA"],
+    category: "DELIVERY //",
+    items: ["DESIGN_SYSTEMS", "GIT", "VITE"],
   },
 ];
 
@@ -35,15 +35,17 @@ export function About() {
           delay={100}
         >
           <p>
-            Frontend engineer specializing in modernizing legacy systems into
-            scalable, maintainable UI architectures. I&apos;ve rebuilt
-            enterprise
-            platforms from Ext.NET to React and shipped modular Angular systems
-            from the ground up.
+            Lead frontend developer specializing in modernizing legacy systems
+            into scalable, maintainable UI architectures. I&apos;ve rebuilt
+            enterprise platforms from Ext.NET to React and shipped modular
+            Angular systems from the ground up.
           </p>
           <p>
-            My work is driven by a commitment to accessible experiences.
-            Interfaces that perform for everyone, not just the happy path.
+            Currently leading frontend on ClearSkies at Odyssey Cybersecurity,
+            owning architecture direction, mentoring the team, and driving a
+            full platform rewrite. I optimize for code that outlives the sprint:
+            clear module boundaries, reviewable patterns, and UIs other
+            engineers can extend without a walkthrough.
           </p>
         </FadeIn>
 

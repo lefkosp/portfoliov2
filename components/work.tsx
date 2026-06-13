@@ -14,7 +14,7 @@ export function Work() {
         </div>
       </FadeIn>
 
-      {/* 01 — Flagship: shipped full-stack AI product */}
+      {/* 01, Flagship: shipped full-stack AI product */}
       <FadeIn className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-150 group-hover:border-accent lg:col-span-7 lg:h-auto">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-150 group-hover:bg-transparent" />
@@ -88,7 +88,7 @@ export function Work() {
         </div>
       </FadeIn>
 
-      {/* 02 + 03 — Hackathon product and systems tooling */}
+      {/* 02 + 03, Hackathon product and systems tooling */}
       <div className="mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <FadeIn className="group relative col-span-4 flex flex-col gap-8 border border-surface-variant p-8 transition-colors duration-150 hover:border-accent lg:col-span-5">
           <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
@@ -104,7 +104,7 @@ export function Work() {
             Parking marketplace PWA built for the Bank of Cyprus Fintech
             Hackathon: live map with geolocation, booking flow, QR check-in,
             realtime payment events over WebSockets, push notifications, and a
-            vendor dashboard — end to end against a deployed backend.
+            vendor dashboard, end to end against a deployed backend.
           </p>
           <div className="flex items-end justify-between">
             <div className="flex flex-wrap gap-2">
@@ -145,8 +145,8 @@ export function Work() {
             </h4>
           </div>
           <p className="flex-grow font-sans text-body-md text-on-surface-variant">
-            On-prem CLI daemon that watches git repositories for risky changes
-            — SQL migrations, OpenAPI contract diffs, sensitive paths — and
+            On-prem CLI daemon that watches git repositories for risky changes:
+            SQL migrations, OpenAPI contract diffs, sensitive paths, and
             posts prioritized Slack digests. SQLite-backed state, Dockerized,
             covered by vitest suites. No code ever leaves the network.
           </p>
@@ -168,7 +168,7 @@ export function Work() {
         </FadeIn>
       </div>
 
-      {/* 04 — OSS-style component library */}
+      {/* 04, OSS-style component library */}
       <FadeIn className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <div className="hidden lg:col-span-4 lg:block" />
 

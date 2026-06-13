@@ -27,7 +27,7 @@ export async function Decisions() {
             <span className="h-[1px] w-4 bg-accent" /> ADR
           </h4>
           <p className="mt-4 hidden font-sans text-body-md text-on-surface-variant lg:block">
-            Real architecture decisions from real projects — context,
+            Real architecture decisions from real projects: context,
             trade-offs, and what I&apos;d do differently. Expand a record or
             open its permalink.
           </p>

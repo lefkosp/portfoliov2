@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Lefkos Papapetrou — Frontend Engineer";
+export const alt = "Lefkos Papapetrou | Lead Frontend Developer";
 export const size = {
   width: 1200,
   height: 630,
@@ -41,9 +41,13 @@ export default function OpenGraphImage() {
             <span style={{ color: "#efe6d3" }}>ONLINE</span>
           </span>
           <span style={{ display: "flex" }}>
-            STATUS:&nbsp;
+            ROLE:&nbsp;
+            <span style={{ color: "#efe6d3" }}>LEAD_FRONTEND_DEVELOPER</span>
+          </span>
+          <span style={{ display: "flex" }}>
+            FOCUS:&nbsp;
             <span style={{ color: "#efe6d3" }}>
-              FRONTEND SYSTEMS. NO SHORTCUTS.
+              LEGACY_PLATFORMS → REACT
             </span>
           </span>
           <span style={{ color: "#5c4f30" }}>{"*/"}</span>
@@ -74,7 +78,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div style={{ width: "32px", height: "2px", background: "#ffb000" }} />
-          FRONTEND_ENGINEER
+          LEAD FRONTEND DEVELOPER
         </div>
       </div>
     ),

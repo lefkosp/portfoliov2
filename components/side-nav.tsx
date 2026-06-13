@@ -71,7 +71,7 @@ export function SideNav() {
           L.PAPAPETROU
         </Link>
         <div className="font-display text-[11px] uppercase leading-tight tracking-widest text-accent">
-          FRONTEND_ENGINEER
+          LEAD // FRONTEND
         </div>
       </div>
 

@@ -12,9 +12,12 @@ export function Hero() {
             <span className="mb-2 block text-outline">{"/*"}</span>
             INIT_SEQUENCE: <span className="text-foreground">ONLINE</span>
             <br />
-            STATUS:{" "}
+            ROLE:{" "}
+            <span className="text-foreground">LEAD_FRONTEND_DEVELOPER</span>
+            <br />
+            FOCUS:{" "}
             <span className="text-foreground">
-              FRONTEND SYSTEMS. NO SHORTCUTS.
+              LEGACY_PLATFORMS → REACT
             </span>
             <span className="mt-2 block text-outline">{"*/"}</span>
           </div>
@@ -33,7 +36,7 @@ export function Hero() {
           >
             <div className="absolute -right-[3px] -top-[3px] h-[5px] w-[5px] bg-accent" />
             <h2 className="font-display text-headline-md text-on-surface">
-              FRONTEND ENGINEER
+              LEAD FRONTEND DEVELOPER
             </h2>
           </div>
         </div>

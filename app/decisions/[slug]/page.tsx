@@ -28,7 +28,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${decision.id} — ${decision.title}`,
+    title: `${decision.id}: ${decision.title}`,
     description: decision.decision,
   };
 }

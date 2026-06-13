@@ -32,14 +32,14 @@ const entries: ExperienceEntry[] = [
         role: "Lead Software Developer (Frontend) // ClearSkies",
         period: "MAY_2026 -> PRESENT",
         description:
-          "Own frontend architecture for ClearSkies—module boundaries, shared patterns, and long-term React platform direction. Lead a small frontend team through mentoring, structured code reviews, and unblocking delivery while raising the quality bar.",
+          "Own frontend architecture for ClearSkies: module boundaries, shared patterns, and long-term React platform direction. Lead a small frontend team through mentoring, structured code reviews, and unblocking delivery while raising the quality bar.",
         current: true,
       },
       {
         role: "Software Developer (Frontend) // ClearSkies",
         period: "JUN_2025 -> MAY_2026",
         description:
-          "Leading the full rewrite of ClearSkies from C#/Ext.NET to a modern React architecture. Replaced a brittle legacy UI layer with composable component systems, reducing developer onboarding friction and improving cross-team maintainability for long-term platform evolution.",
+          "Core contributor to the ClearSkies rewrite from C#/Ext.NET to React. Shipped composable component systems that replaced a brittle legacy UI layer, reducing developer onboarding friction and improving cross-team maintainability across the platform.",
       },
     ],
   },

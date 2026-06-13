@@ -14,7 +14,7 @@ export const metadata = {
   outcome:
     "Key exposure eliminated, per-user rate limiting became possible, and the backend enabled caching that cut API spend.",
   revisit:
-    "Should have been the architecture from day one — the 'temporary' browser-side shortcut shipped to production.",
+    "Should have been the architecture from day one: the 'temporary' browser-side shortcut shipped to production.",
 };
 
 In 2023 I built an AI business-idea generator and made the classic move: the
@@ -25,7 +25,7 @@ and I chose not to listen.
 
 ## The forcing function
 
-The successor project, Tweetprenuer, needed two upstream APIs — SocialData
+The successor project, Tweetprenuer, needed two upstream APIs, SocialData
 for profile and tweet retrieval, OpenAI for generation. Doubling down on
 browser-side calls would have meant exposing two keys, and the SocialData
 billing model made abuse genuinely expensive. The cost of doing it right had
@@ -45,6 +45,6 @@ The obvious win was key security, but the unplanned wins were bigger:
 ## The rule
 
 User-facing clients never hold secrets. If a feature seems to need a key in
-the browser, the feature actually needs a backend — however small. The
+the browser, the feature actually needs a backend, however small. The
 "temporary" exception does not exist: mine made it to production and stayed
 there for over a year.
