@@ -18,18 +18,10 @@ export function Work() {
       <FadeIn className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-150 group-hover:border-accent lg:col-span-7 lg:h-auto">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-150 group-hover:bg-transparent" />
-          <div
-            aria-hidden="true"
-            className="h-full w-full bg-gradient-to-br from-surface-container-high to-surface-container-lowest"
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-30"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, var(--color-surface-variant) 1px, transparent 1px), linear-gradient(to bottom, var(--color-surface-variant) 1px, transparent 1px)",
-              backgroundSize: "32px 32px",
-            }}
+          <img
+            src="/work/tweetprenuer.png"
+            alt="Tweetprenuer business card generated from an X profile"
+            className="h-full w-full object-cover object-top"
           />
         </div>
 
@@ -161,9 +153,15 @@ export function Work() {
                 </span>
               ))}
             </div>
-            <span className="font-mono text-technical-mono text-outline">
-              PRE_RELEASE
-            </span>
+            <a
+              href="https://github.com/lefkosp/change-radar-agent"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Change Radar source code"
+              className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
+            >
+              ↗
+            </a>
           </div>
         </FadeIn>
       </div>
@@ -200,21 +198,33 @@ export function Work() {
                   </span>
                 ))}
               </div>
+              <div className="mt-8 flex flex-wrap items-center gap-6">
+                <a
+                  href="https://lefkosp.github.io/formforge/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open the FormForge docs site"
+                  className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-150 hover:border-accent hover:text-accent"
+                >
+                  VIEW_DOCS
+                  <span
+                    aria-hidden="true"
+                    className="inline-block transition-transform duration-150 group-hover/btn:translate-x-1"
+                  >
+                    →
+                  </span>
+                </a>
+                <a
+                  href="https://github.com/lefkosp/formforge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View FormForge source code"
+                  className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
+                >
+                  SOURCE ↗
+                </a>
+              </div>
             </div>
-            <a
-              href="https://github.com/lefkosp/formforge"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View FormForge source code"
-              className="flex h-16 w-16 shrink-0 items-center justify-center border border-surface-variant text-2xl transition-colors duration-150 group-hover:border-accent hover:bg-accent hover:text-on-primary-fixed"
-            >
-              <span
-                aria-hidden="true"
-                className="inline-block transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-              >
-                ↗
-              </span>
-            </a>
           </div>
         </div>
       </FadeIn>
