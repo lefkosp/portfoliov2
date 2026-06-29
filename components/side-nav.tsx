@@ -15,9 +15,10 @@ const navItems: NavItem[] = [
   { id: "about", label: "01_ABOUT", href: "/#about" },
   { id: "experience", label: "02_EXPERIENCE", href: "/#experience" },
   { id: "work", label: "03_WORK", href: "/#work" },
-  { id: "decisions", label: "04_DECISIONS", href: "/#decisions" },
-  { id: "blog", label: "05_BLOG", href: "/#blog" },
-  { id: "contact", label: "06_CONTACT", href: "/#contact" },
+  { id: "lab", label: "04_LAB", href: "/#lab" },
+  { id: "decisions", label: "05_DECISIONS", href: "/#decisions" },
+  { id: "blog", label: "06_BLOG", href: "/#blog" },
+  { id: "contact", label: "07_CONTACT", href: "/#contact" },
 ];
 
 export function SideNav() {

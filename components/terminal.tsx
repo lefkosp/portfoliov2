@@ -1,5 +1,6 @@
 "use client";
 
+import { getLabTerminalLines, labOpenTargets } from "@/lib/lab";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -53,6 +54,7 @@ const FILES: Record<string, string[]> = {
     "",
     "full records :: 'open decisions'",
   ],
+  "lab.log": getLabTerminalLines(),
 };
 
 const SECTION_TARGETS: Record<string, string> = {
@@ -60,12 +62,19 @@ const SECTION_TARGETS: Record<string, string> = {
   about: "/#about",
   experience: "/#experience",
   work: "/#work",
+  lab: "/#lab",
   decisions: "/#decisions",
   blog: "/#blog",
   contact: "/#contact",
 };
 
-const OPEN_TARGETS = [...Object.keys(SECTION_TARGETS), "cv.pdf"];
+const EXTERNAL_TARGETS: Record<string, string> = labOpenTargets;
+
+const OPEN_TARGETS = [
+  ...Object.keys(SECTION_TARGETS),
+  ...Object.keys(EXTERNAL_TARGETS).filter((key) => !SECTION_TARGETS[key]),
+  "cv.pdf",
+];
 
 const COMMANDS = [
   "help",
@@ -168,7 +177,7 @@ export function Terminal() {
           break;
         case "ls":
           print([
-            "about.txt  stack.txt  experience.log  decisions.log  contact.txt  cv.pdf",
+            "about.txt  stack.txt  experience.log  lab.log  decisions.log  contact.txt  cv.pdf",
           ]);
           break;
         case "cat": {
@@ -193,6 +202,9 @@ export function Terminal() {
             print([`navigating to ${arg} ...`]);
             setIsOpen(false);
             router.push(SECTION_TARGETS[arg]);
+          } else if (EXTERNAL_TARGETS[arg]) {
+            print([`opening ${arg} ...`]);
+            window.open(EXTERNAL_TARGETS[arg], "_blank");
           } else {
             print([`open: ${arg}: unknown target`], "error");
           }
