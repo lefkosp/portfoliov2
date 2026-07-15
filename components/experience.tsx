@@ -51,7 +51,7 @@ const entries: ExperienceEntry[] = [
         role: "Frontend Developer",
         period: "APR_2022 -> MAY_2025",
         description:
-          "Architected and shipped an internal staffing module in Angular/TypeScript with tight Node.js API integration. Mobile-first implementation expanded platform reach to field teams, eliminating manual scheduling overhead and streamlining cross-department coordination.",
+          "Owned frontend delivery on an internal staffing platform for three years: shipped the original scheduling module in Angular/TypeScript, then kept building calendar-heavy features on top, including an automatic shift-to-staff assignment engine. Wrote unit tests throughout and, with no dedicated designer on the team, owned UI design decisions directly, iterating 2-3 directions per feature before committing.",
       },
     ],
   },
