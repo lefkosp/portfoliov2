@@ -42,6 +42,20 @@ export const labEntries: LabEntry[] = [
     tags: ["NEXT.JS", "REACT", "TYPESCRIPT"],
     github: "https://github.com/lefkosp/reviewsnap-ui",
   },
+  {
+    id: "LAB-03",
+    name: "TRADING_TERMINAL",
+    slug: "trading-terminal",
+    status: "ACTIVE",
+    date: "2026-07",
+    problem:
+      "Live market-watch dashboard for trading/forex platforms — streaming price data, not a static demo.",
+    built:
+      "Vite/React app with a reconnect-with-exponential-backoff WebSocket client, RTK Query for historical candles, a live watchlist and candlestick chart fed from Binance's public feed, and a connection-status indicator.",
+    next: "Virtualized order book that holds 60fps under load, profiled and written up, plus P&L math tests.",
+    tags: ["REACT", "REDUX_TOOLKIT", "WEBSOCKETS", "LIGHTWEIGHT_CHARTS"],
+    github: "https://github.com/lefkosp/trading-terminal",
+  },
 ];
 
 export function getLabEntries() {
@@ -55,7 +69,7 @@ export function getLabTerminalLines() {
         `${entry.id} :: ${entry.name} [${entry.status}] :: ${entry.problem}`,
     ),
     "",
-    "details :: 'open lab'  |  repos :: 'open budget-firewall' | 'open reviewsnap'",
+    "details :: 'open lab'  |  repos :: 'open budget-firewall' | 'open reviewsnap' | 'open trading-terminal'",
   ];
 }
 
@@ -63,4 +77,5 @@ export const labOpenTargets: Record<string, string> = {
   lab: "/#lab",
   "budget-firewall": "https://github.com/lefkosp/budget-firewall",
   reviewsnap: "https://github.com/lefkosp/reviewsnap-ui",
+  "trading-terminal": "https://github.com/lefkosp/trading-terminal",
 };
