@@ -17,7 +17,7 @@ const links = [
   { label: "GITHUB", href: "https://github.com/lefkosp", external: true },
   {
     label: "LINKEDIN",
-    href: "https://www.linkedin.com/in/lefkos",
+    href: "https://www.linkedin.com/in/lefkosp/",
     external: true,
   },
   {
@@ -25,7 +25,7 @@ const links = [
     href: "https://github.com/lefkosp/portfoliov2",
     external: true,
   },
-  { label: "CONTACT_SECURE", href: "mailto:hello@lefkos.dev", external: false },
+  { label: "CONTACT_SECURE", href: "mailto:paplefkos@gmail.com", external: false },
 ];
 
 export function Footer() {

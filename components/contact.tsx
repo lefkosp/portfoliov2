@@ -27,7 +27,7 @@ export function Contact() {
           </h2>
 
           <a
-            href="mailto:hello@lefkos.dev"
+            href="mailto:paplefkos@gmail.com"
             className="relative z-10 flex items-center gap-3 border border-accent px-8 py-4 font-display text-label-caps uppercase tracking-widest text-accent transition-colors duration-150 hover:bg-accent hover:text-on-primary-fixed"
           >
             <span aria-hidden="true" className="font-mono">
