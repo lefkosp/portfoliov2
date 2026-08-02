@@ -41,7 +41,7 @@ const FILES: Record<string, string[]> = {
     "[2018] PRIMOTHEPLUG          :: Owner & Digital Strategist",
   ],
   "contact.txt": [
-    "EMAIL  :: hello@lefkos.dev",
+    "EMAIL  :: paplefkos@gmail.com",
     "GITHUB :: github.com/lefkosp",
     "send a signal. Response time is usually < 24h.",
   ],
@@ -52,7 +52,7 @@ const FILES: Record<string, string[]> = {
     "ADR-004 :: In a hackathon, fake the familiar, build the differentiator",
     "ADR-005 :: One declarative API beats fifteen flexible components",
     "",
-    "full records :: 'open decisions'",
+    "full records :: 'open decision-log'",
   ],
   "lab.log": getLabTerminalLines(),
 };
@@ -64,6 +64,7 @@ const SECTION_TARGETS: Record<string, string> = {
   work: "/#work",
   lab: "/#lab",
   decisions: "/#decisions",
+  "decision-log": "/decisions",
   contact: "/#contact",
 };
 

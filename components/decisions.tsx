@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getDecisions } from "@/lib/decisions";
-import { FadeIn } from "./fade-in";
+import { Reveal } from "./reveal";
+import { Scramble } from "./scramble";
 
 export async function Decisions() {
   const decisions = await getDecisions();
@@ -10,112 +11,108 @@ export async function Decisions() {
       id="decisions"
       className="mt-section-gap w-full px-6 lg:px-margin-edge"
     >
-      <FadeIn className="mb-12 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <div className="col-span-4 flex items-end justify-between border-b border-surface-variant pb-4 lg:col-span-12">
-          <h3 className="font-display text-headline-lg uppercase text-foreground">
-            DECISION_LOG
-          </h3>
-          <span className="hidden font-mono text-technical-mono text-outline md:block">
-            RECORDS: {decisions.length.toString().padStart(2, "0")}
-          </span>
-        </div>
-      </FadeIn>
+      {/* The one section that switches phosphor colour — it is the argument
+          the whole site is making, so it should not look like the lists
+          above and below it. */}
+      <div className="relative border border-signal-dim bg-signal-surface px-6 py-12 lg:px-12 lg:py-16">
+        <div className="absolute -left-px -top-px h-10 w-10 border-l-2 border-t-2 border-signal" />
+        <div className="absolute -bottom-px -right-px h-10 w-10 border-b-2 border-r-2 border-signal" />
 
-      <div className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <FadeIn className="col-span-4 lg:col-span-2">
-          <h4 className="flex items-center gap-2 font-display text-label-caps uppercase text-accent">
-            <span className="h-[1px] w-4 bg-accent" /> ADR
-          </h4>
-          <p className="mt-4 hidden font-sans text-body-md text-on-surface-variant lg:block">
-            Real architecture decisions from real projects: context,
-            trade-offs, and what I&apos;d do differently. Expand a record or
-            open its permalink.
+        <Reveal variant="clip" className="mb-10">
+          <div className="flex flex-wrap items-end justify-between gap-4 border-b border-signal-dim pb-5">
+            <h3 className="phosphor font-display text-headline-lg uppercase text-signal">
+              <Scramble text="DECISION_LOG" />
+            </h3>
+            <span className="font-mono text-technical-mono text-signal-dim">
+              RECORDS: {decisions.length.toString().padStart(2, "0")}
+            </span>
+          </div>
+        </Reveal>
+
+        <Reveal className="mb-12 max-w-[52rem]" delay={80}>
+          <p className="font-sans text-body-lg text-on-surface-variant">
+            Not a blog. Every non-obvious call I&apos;ve made on a real
+            project, written up the way I&apos;d write it for a team: the
+            constraint, the options I rejected, what the choice cost me, and
+            what I&apos;d do differently. The mistakes are in here too —
+            they&apos;re the useful part.
           </p>
-        </FadeIn>
+        </Reveal>
 
-        <ul className="col-span-4 flex flex-col lg:col-span-9">
-          {decisions.map((decision, index) => {
-            const record: Array<[string, string]> = [
-              ["CONTEXT", decision.context],
-              ["OPTIONS", decision.options],
-              ["DECISION", decision.decision],
-              ["TRADEOFF", decision.tradeoff],
-              ["OUTCOME", decision.outcome],
-              ["REVISIT", decision.revisit],
-            ];
+        <div className="grid grid-cols-1 gap-px bg-signal-dim/40 lg:grid-cols-2">
+          {decisions.map((decision, index) => (
+            <Reveal key={decision.slug} variant="rise" delay={index * 80}>
+              <article className="group relative flex h-full flex-col gap-5 bg-background p-6 transition-colors duration-200 hover:bg-signal-surface lg:p-8">
+                <div className="flex items-center justify-between font-mono text-technical-mono">
+                  <span className="phosphor text-signal">{decision.id}</span>
+                  <span className="text-outline">{decision.date}</span>
+                </div>
 
-            return (
-              <li
-                key={decision.slug}
-                className="border-t border-surface-variant first:border-t-0 lg:first:border-t"
-              >
-                <FadeIn delay={index * 100}>
-                  <details className="group">
-                    <summary className="grid cursor-pointer list-none grid-cols-4 gap-gutter py-8 transition-colors duration-150 [&::-webkit-details-marker]:hidden lg:grid-cols-9">
-                      <span className="col-span-4 whitespace-nowrap font-mono text-technical-mono text-accent lg:col-span-2">
-                        <span aria-hidden="true" className="text-outline">
-                          <span className="group-open:hidden">[+]</span>
-                          <span className="hidden group-open:inline">[-]</span>
-                        </span>{" "}
-                        {decision.id}
-                      </span>
+                <h4 className="font-display text-headline-md leading-tight text-foreground transition-colors duration-200 group-hover:text-signal">
+                  <Link
+                    href={`/decisions/${decision.slug}`}
+                    className="after:absolute after:inset-0 after:content-['']"
+                  >
+                    {decision.title}
+                  </Link>
+                </h4>
 
-                      <div className="col-span-4 flex flex-col gap-3 lg:col-span-4">
-                        <h4 className="font-display text-headline-md leading-tight text-foreground transition-colors duration-150 group-hover:text-accent">
-                          {decision.title}
-                        </h4>
-                        <p className="font-sans text-body-md text-on-surface-variant group-open:hidden">
-                          <span className="font-mono text-technical-mono text-outline">
-                            TRADEOFF {"//"}
-                          </span>{" "}
-                          {decision.tradeoff}
-                        </p>
-                      </div>
+                <dl className="flex flex-col gap-4 border-t border-surface-variant pt-5">
+                  <div className="flex flex-col gap-1">
+                    <dt className="font-mono text-[10px] uppercase tracking-widest text-signal-dim">
+                      Decision
+                    </dt>
+                    <dd className="font-sans text-body-md text-on-surface-variant">
+                      {decision.decision}
+                    </dd>
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <dt className="font-mono text-[10px] uppercase tracking-widest text-signal-dim">
+                      What it cost
+                    </dt>
+                    <dd className="font-sans text-body-md text-on-surface-variant">
+                      {decision.tradeoff}
+                    </dd>
+                  </div>
+                </dl>
 
-                      <div className="col-span-4 flex flex-col gap-2 font-mono text-technical-mono uppercase text-outline lg:col-span-3 lg:items-end lg:text-right">
-                        <span>{decision.date}</span>
-                        <span className="text-on-surface-variant">
-                          {decision.status}
-                        </span>
-                      </div>
-                    </summary>
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-2 font-mono text-technical-mono">
+                  {decision.project ? (
+                    <span className="border border-surface-variant px-2 py-1 text-[10px] text-on-surface-variant">
+                      {decision.project}
+                    </span>
+                  ) : (
+                    <span />
+                  )}
+                  <span className="inline-flex items-center gap-2 uppercase text-on-surface-variant transition-colors duration-200 group-hover:text-signal">
+                    FULL_RECORD
+                    <span
+                      aria-hidden="true"
+                      className="inline-block transition-transform duration-200 group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </span>
+                </div>
+              </article>
+            </Reveal>
+          ))}
+        </div>
 
-                    <div className="pb-10 lg:pl-[calc((100%+24px)*2/9)]">
-                      <dl className="border border-surface-variant">
-                        {record.map(([label, value]) => (
-                          <div
-                            key={label}
-                            className="grid grid-cols-1 gap-2 border-b border-surface-variant p-5 last:border-b-0 lg:grid-cols-[120px_1fr] lg:gap-6"
-                          >
-                            <dt className="font-mono text-technical-mono text-accent">
-                              {label} {"//"}
-                            </dt>
-                            <dd className="font-sans text-body-md text-on-surface-variant">
-                              {value}
-                            </dd>
-                          </div>
-                        ))}
-                      </dl>
-
-                      <Link
-                        href={`/decisions/${decision.slug}`}
-                        className="group/link mt-6 inline-flex items-center gap-3 font-mono text-technical-mono uppercase text-on-surface-variant transition-colors duration-150 hover:text-accent"
-                      >
-                        FULL_RECORD
-                        <span
-                          aria-hidden="true"
-                          className="inline-block transition-transform duration-150 group-hover/link:translate-x-1"
-                        >
-                          →
-                        </span>
-                      </Link>
-                    </div>
-                  </details>
-                </FadeIn>
-              </li>
-            );
-          })}
-        </ul>
+        <Reveal className="mt-10" delay={120}>
+          <Link
+            href="/decisions"
+            className="group/btn inline-flex w-fit items-center gap-3 border border-signal-dim px-6 py-3 font-display text-label-caps uppercase tracking-widest text-signal transition-colors duration-200 hover:border-signal hover:bg-signal/10"
+          >
+            READ_THE_FULL_LOG
+            <span
+              aria-hidden="true"
+              className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
+            >
+              →
+            </span>
+          </Link>
+        </Reveal>
       </div>
     </section>
   );

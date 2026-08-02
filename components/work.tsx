@@ -1,30 +1,69 @@
 import Image from "next/image";
-import { FadeIn } from "./fade-in";
+import Link from "next/link";
+import { getDecisionsForProject } from "@/lib/decisions";
+import { OutputFrame } from "./output-frame";
+import { Reveal } from "./reveal";
+import { Scramble } from "./scramble";
+
+/** Bridges a project to the reasoning behind it. Green here is the same
+ *  green as the decision log, so the connection reads without a caption. */
+async function DecisionLinks({ project }: { project: string }) {
+  const decisions = await getDecisionsForProject(project);
+
+  if (decisions.length === 0) return null;
+
+  return (
+    <div className="mb-8 flex flex-col gap-2 border-l border-signal-dim pl-4">
+      <span className="font-mono text-[10px] uppercase tracking-widest text-signal-dim">
+        Why it was built this way
+      </span>
+      {decisions.map((decision) => (
+        <Link
+          key={decision.slug}
+          href={`/decisions/${decision.slug}`}
+          className="group/adr flex items-baseline gap-2 font-mono text-technical-mono text-on-surface-variant transition-colors duration-200 hover:text-signal"
+        >
+          <span className="shrink-0 text-signal">{decision.id}</span>
+          <span className="underline decoration-signal-dim underline-offset-4 group-hover/adr:decoration-signal">
+            {decision.title}
+          </span>
+        </Link>
+      ))}
+    </div>
+  );
+}
+
+const tagClass =
+  "border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant";
 
 export function Work() {
   return (
     <section id="work" className="mt-section-gap w-full px-6 lg:px-margin-edge">
-      <FadeIn className="mb-12 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <div className="col-span-4 flex items-end justify-between border-b border-surface-variant pb-4 lg:col-span-12">
+      <Reveal variant="clip" className="mb-16">
+        <div className="flex items-end justify-between border-b border-surface-variant pb-4">
           <h3 className="font-display text-headline-lg uppercase text-foreground">
-            SELECTED_WORKS
+            <Scramble text="SELECTED_WORKS" />
           </h3>
           <span className="hidden font-mono text-technical-mono text-outline md:block">
             PROJECTS: 04
           </span>
         </div>
-      </FadeIn>
+      </Reveal>
 
       {/* 01, Flagship: shipped full-stack AI product */}
-      <FadeIn className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-150 group-hover:border-accent lg:col-span-7 lg:h-auto lg:min-h-[520px]">
-          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-150 group-hover:bg-transparent" />
+      <Reveal
+        variant="rise"
+        className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
+      >
+        <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-7 lg:h-auto lg:min-h-[520px]">
+          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
           <Image
             src="/work/tweetprenuer.png"
             alt="Tweetprenuer business card generated from an X profile"
             fill
             sizes="(min-width: 1024px) 58vw, 100vw"
             className="object-cover object-top"
+            priority
           />
         </div>
 
@@ -34,7 +73,7 @@ export function Work() {
             <span className="animate-pulse text-technical-mono">●</span>
             <span className="text-outline">LIVE</span>
           </div>
-          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
+          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
             TWEETPRENUER
           </h4>
           <p className="mb-6 font-sans text-body-md text-on-surface-variant">
@@ -46,26 +85,26 @@ export function Work() {
           </p>
           <div className="mb-8 flex flex-wrap gap-2">
             {["ANGULAR", "EXPRESS", "MONGODB", "OPENAI"].map((tag) => (
-              <span
-                key={tag}
-                className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
-              >
+              <span key={tag} className={tagClass}>
                 {tag}
               </span>
             ))}
           </div>
+
+          <DecisionLinks project="TWEETPRENUER" />
+
           <div className="flex flex-wrap items-center gap-6">
             <a
               href="https://tweetprenuer.net"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open the live Tweetprenuer app"
-              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-150 hover:border-accent hover:text-accent"
+              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-200 hover:border-accent hover:text-accent"
             >
               LAUNCH_APP
               <span
                 aria-hidden="true"
-                className="inline-block transition-transform duration-150 group-hover/btn:translate-x-1"
+                className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
               >
                 →
               </span>
@@ -75,162 +114,243 @@ export function Work() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="View Tweetprenuer source code"
-              className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
+              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
             >
               SOURCE ↗
             </a>
           </div>
         </div>
-      </FadeIn>
+      </Reveal>
 
-      {/* 02 + 03, Hackathon product and systems tooling */}
-      <div className="mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <FadeIn className="group relative col-span-4 flex flex-col gap-8 border border-surface-variant p-8 transition-colors duration-150 hover:border-accent lg:col-span-5">
-          <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
-          <div>
-            <div className="mb-2 font-mono text-technical-mono text-outline">
-              MODULE_02 // FINTECH_HACKATHON
-            </div>
-            <h4 className="font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
-              PARKIT
-            </h4>
+      {/* 02, Hackathon product */}
+      <Reveal
+        variant="rise"
+        className="group relative mb-32 grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
+      >
+        <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-200 group-hover:border-accent" />
+
+        <div className="col-span-4 flex flex-col lg:col-span-6">
+          <div className="mb-2 font-mono text-technical-mono text-outline">
+            MODULE_02 // FINTECH_HACKATHON
           </div>
-          <p className="flex-grow font-sans text-body-md text-on-surface-variant">
+          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
+            PARKIT
+          </h4>
+          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
             Parking marketplace PWA built for the Bank of Cyprus Fintech
             Hackathon: live map with geolocation, booking flow, QR check-in,
             realtime payment events over WebSockets, push notifications, and a
             vendor dashboard, end to end against a deployed backend.
           </p>
-          <div className="flex items-end justify-between">
-            <div className="flex flex-wrap gap-2">
-              {["ANGULAR", "LEAFLET", "SOCKET.IO", "PWA"].map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
-                >
-                  {tag}
+          <div className="mb-8 flex flex-wrap gap-2">
+            {["ANGULAR", "LEAFLET", "SOCKET.IO", "PWA"].map((tag) => (
+              <span key={tag} className={tagClass}>
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <DecisionLinks project="PARKIT" />
+
+          <a
+            href="https://github.com/lefkosp/parkit"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Parkit source code"
+            className="mt-auto w-fit font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+          >
+            SOURCE ↗
+          </a>
+        </div>
+
+        <div className="col-span-4 lg:col-span-5 lg:col-start-8">
+          <OutputFrame title="booking.socket — live">
+            <div className="flex flex-col gap-1 text-on-surface-variant">
+              <span>
+                <span className="text-outline">12:04:11</span>{" "}
+                <span className="text-accent">connect</span> vendor:LARNACA_04
+              </span>
+              <span>
+                <span className="text-outline">12:04:12</span> slot.reserve →{" "}
+                <span className="text-foreground">B-2291</span>
+              </span>
+              <span>
+                <span className="text-outline">12:04:19</span> qr.scan{" "}
+                <span className="text-accent">CHECK_IN</span> ok
+              </span>
+              <span>
+                <span className="text-outline">12:41:03</span> qr.scan{" "}
+                <span className="text-accent">CHECK_OUT</span> 37m
+              </span>
+              <span>
+                <span className="text-outline">12:41:04</span> payment.settled{" "}
+                <span className="text-foreground">€2.47</span>
+              </span>
+              <span className="text-outline">
+                ── vendor dashboard updated ──
+              </span>
+            </div>
+          </OutputFrame>
+        </div>
+      </Reveal>
+
+      {/* 03, Systems tooling */}
+      <Reveal
+        variant="rise"
+        className="group relative mb-32 grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
+      >
+        <div className="absolute left-0 top-0 h-8 w-8 border-b border-r border-surface-variant transition-colors duration-200 group-hover:border-accent" />
+
+        <div className="order-2 col-span-4 lg:order-1 lg:col-span-5">
+          <OutputFrame title="#eng-risk — 08:00 digest">
+            <div className="flex flex-col gap-2 text-on-surface-variant">
+              <span className="text-outline">change-radar ▸ 3 findings</span>
+              <span>
+                <span className="text-error">HIGH</span>{" "}
+                migrations/0142_drop_orders.sql
+                <br />
+                <span className="pl-11 text-outline">
+                  DROP COLUMN on a table with 4 FKs
                 </span>
-              ))}
+              </span>
+              <span>
+                <span className="text-accent">MED&nbsp;</span> openapi.yaml
+                <br />
+                <span className="pl-11 text-outline">
+                  response shape changed: /v2/accounts
+                </span>
+              </span>
+              <span>
+                <span className="text-signal">LOW&nbsp;</span>{" "}
+                .github/workflows/deploy.yml
+              </span>
             </div>
-            <a
-              href="https://github.com/lefkosp/parkit"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Parkit source code"
-              className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
-            >
-              ↗
-            </a>
-          </div>
-        </FadeIn>
+          </OutputFrame>
+        </div>
 
-        <div className="hidden lg:col-span-2 lg:block" />
-
-        <FadeIn
-          className="group relative col-span-4 flex flex-col gap-8 border border-surface-variant p-8 transition-colors duration-150 hover:border-accent lg:col-span-5"
-          delay={150}
-        >
-          <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-150 group-hover:border-accent" />
-          <div>
-            <div className="mb-2 font-mono text-technical-mono text-outline">
-              MODULE_03 // SYSTEMS_TOOLING
-            </div>
-            <h4 className="font-display text-headline-md text-foreground transition-colors duration-150 group-hover:text-accent">
-              CHANGE_RADAR
-            </h4>
+        <div className="order-1 col-span-4 flex flex-col lg:order-2 lg:col-span-6 lg:col-start-7">
+          <div className="mb-2 font-mono text-technical-mono text-outline">
+            MODULE_03 // SYSTEMS_TOOLING
           </div>
-          <p className="flex-grow font-sans text-body-md text-on-surface-variant">
+          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
+            CHANGE_RADAR
+          </h4>
+          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
             On-prem CLI daemon that watches git repositories for risky changes:
-            SQL migrations, OpenAPI contract diffs, sensitive paths, and
-            posts prioritized Slack digests. SQLite-backed state, Dockerized,
-            covered by vitest suites. No code ever leaves the network.
+            SQL migrations, OpenAPI contract diffs, sensitive paths, and posts
+            prioritized Slack digests. SQLite-backed state, Dockerized, covered
+            by vitest suites. No code ever leaves the network.
           </p>
-          <div className="flex items-end justify-between">
-            <div className="flex flex-wrap gap-2">
-              {["TYPESCRIPT", "NODE_CLI", "SQLITE", "DOCKER"].map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <a
-              href="https://github.com/lefkosp/change-radar-agent"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Change Radar source code"
-              className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
-            >
-              ↗
-            </a>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {["TYPESCRIPT", "NODE_CLI", "SQLITE", "DOCKER"].map((tag) => (
+              <span key={tag} className={tagClass}>
+                {tag}
+              </span>
+            ))}
           </div>
-        </FadeIn>
-      </div>
+          <a
+            href="https://github.com/lefkosp/change-radar-agent"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Change Radar source code"
+            className="mt-auto w-fit font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+          >
+            SOURCE ↗
+          </a>
+        </div>
+      </Reveal>
 
       {/* 04, OSS-style component library */}
-      <FadeIn className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <div className="hidden lg:col-span-4 lg:block" />
+      <Reveal
+        variant="rise"
+        className="group relative grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
+      >
+        <div className="absolute bottom-0 right-0 h-8 w-8 border-l border-t border-surface-variant transition-colors duration-200 group-hover:border-accent" />
 
-        <div className="group relative col-span-4 border-r border-t border-surface-variant p-8 transition-colors duration-150 hover:border-accent lg:col-span-8 lg:p-16">
-          <div className="absolute left-0 top-0 h-16 w-px bg-surface-variant transition-colors duration-150 group-hover:bg-accent" />
-          <div className="absolute bottom-0 right-0 h-px w-16 bg-surface-variant transition-colors duration-150 group-hover:bg-accent" />
+        <div className="col-span-4 flex flex-col lg:col-span-6">
+          <div className="mb-2 font-mono text-technical-mono text-accent">
+            &gt; FORMFORGE_LIB
+          </div>
+          <h4 className="mb-6 font-display text-headline-lg text-foreground transition-colors duration-200 group-hover:text-accent">
+            FORMFORGE
+          </h4>
+          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
+            React form component library: 15+ composable, typed field
+            components behind a single declarative API, shipped with a docs
+            site featuring live previews, copyable examples, and a visual form
+            builder.
+          </p>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {["REACT", "TYPESCRIPT", "DESIGN_SYSTEMS"].map((tag) => (
+              <span key={tag} className={tagClass}>
+                {tag}
+              </span>
+            ))}
+          </div>
 
-          <div className="flex flex-col items-start gap-12 lg:flex-row lg:items-center">
-            <div className="flex-1">
-              <div className="mb-2 font-mono text-technical-mono text-accent">
-                &gt; FORMFORGE_LIB
-              </div>
-              <h4 className="mb-6 font-display text-headline-lg text-foreground transition-colors duration-150 group-hover:text-accent">
-                FORMFORGE
-              </h4>
-              <p className="mb-6 font-sans text-body-md text-on-surface-variant">
-                React form component library: 15+ composable, typed field
-                components behind a single declarative API, shipped with a
-                docs site featuring live previews, copyable examples, and a
-                visual form builder.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {["REACT", "TYPESCRIPT", "DESIGN_SYSTEMS"].map((tag) => (
-                  <span
-                    key={tag}
-                    className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-8 flex flex-wrap items-center gap-6">
-                <a
-                  href="https://lefkosp.github.io/formforge/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Open the FormForge docs site"
-                  className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-150 hover:border-accent hover:text-accent"
-                >
-                  VIEW_DOCS
-                  <span
-                    aria-hidden="true"
-                    className="inline-block transition-transform duration-150 group-hover/btn:translate-x-1"
-                  >
-                    →
-                  </span>
-                </a>
-                <a
-                  href="https://github.com/lefkosp/formforge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="View FormForge source code"
-                  className="font-mono text-technical-mono text-outline transition-colors duration-150 hover:text-accent"
-                >
-                  SOURCE ↗
-                </a>
-              </div>
-            </div>
+          <DecisionLinks project="FORMFORGE" />
+
+          <div className="mt-auto flex flex-wrap items-center gap-6">
+            <a
+              href="https://lefkosp.github.io/formforge/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the FormForge docs site"
+              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-200 hover:border-accent hover:text-accent"
+            >
+              VIEW_DOCS
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
+              >
+                →
+              </span>
+            </a>
+            <a
+              href="https://github.com/lefkosp/formforge"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View FormForge source code"
+              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+            >
+              SOURCE ↗
+            </a>
           </div>
         </div>
-      </FadeIn>
+
+        <div className="col-span-4 lg:col-span-5 lg:col-start-8">
+          <OutputFrame title="schema in — form out">
+            <div className="flex flex-col gap-1 text-on-surface-variant">
+              <span>
+                <span className="text-accent">const</span> schema = {"{"}
+              </span>
+              <span className="pl-4">
+                email: {"{"} type: <span className="text-signal">
+                  &quot;email&quot;
+                </span>
+                , required: <span className="text-signal">true</span> {"}"},
+              </span>
+              <span className="pl-4">
+                password: {"{"} type:{" "}
+                <span className="text-signal">&quot;password&quot;</span>, min:{" "}
+                <span className="text-signal">8</span> {"}"},
+              </span>
+              <span className="pl-4">
+                plan: {"{"} type:{" "}
+                <span className="text-signal">&quot;select&quot;</span>,
+                options: [...] {"}"},
+              </span>
+              <span>{"}"}</span>
+              <span className="mt-2 text-outline">
+                &lt;Form schema={"{"}schema{"}"} /&gt;
+              </span>
+              <span className="text-outline">
+                ── labels, a11y wiring, errors, layout ──
+              </span>
+            </div>
+          </OutputFrame>
+        </div>
+      </Reveal>
     </section>
   );
 }

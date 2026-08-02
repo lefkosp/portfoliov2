@@ -8,8 +8,8 @@ const menuItems = [
   { label: "01_ABOUT", href: "/#about" },
   { label: "02_EXPERIENCE", href: "/#experience" },
   { label: "03_WORK", href: "/#work" },
-  { label: "04_LAB", href: "/#lab" },
-  { label: "05_DECISIONS", href: "/#decisions" },
+  { label: "04_DECISIONS", href: "/#decisions" },
+  { label: "05_LAB", href: "/#lab" },
   { label: "06_CONTACT", href: "/#contact" },
 ];
 

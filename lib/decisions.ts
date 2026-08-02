@@ -9,6 +9,9 @@ export type DecisionMetadata = {
   title: string;
   date: string;
   status: string;
+  /** Name of the project in Selected Works this decision came out of, if any.
+   *  Drives the cross-links between the two sections. */
+  project?: string;
   context: string;
   options: string;
   decision: string;
@@ -62,4 +65,10 @@ export async function getDecisions() {
   return decisions
     .filter((decision): decision is Decision => decision !== null)
     .sort((a, b) => a.id.localeCompare(b.id));
+}
+
+export async function getDecisionsForProject(project: string) {
+  const decisions = await getDecisions();
+
+  return decisions.filter((decision) => decision.project === project);
 }
