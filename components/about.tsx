@@ -1,4 +1,4 @@
-import { FadeIn } from "./fade-in";
+import { Reveal } from "./reveal";
 
 const techStack = [
   {
@@ -24,13 +24,13 @@ export function About() {
       <div className="relative grid w-full grid-cols-4 gap-gutter border-t border-surface-variant pt-12 lg:grid-cols-12">
         <div className="absolute -top-[4px] left-0 h-[8px] w-[8px] border border-accent bg-background" />
 
-        <FadeIn className="col-span-4 lg:col-span-3">
+        <Reveal className="col-span-4 lg:col-span-3">
           <h3 className="flex items-center gap-2 font-display text-label-caps uppercase text-accent">
             <span className="h-[1px] w-4 bg-accent" /> ABOUT
           </h3>
-        </FadeIn>
+        </Reveal>
 
-        <FadeIn
+        <Reveal
           className="col-span-4 flex flex-col gap-6 font-sans text-body-lg text-on-surface-variant lg:col-span-5"
           delay={100}
         >
@@ -47,9 +47,10 @@ export function About() {
             clear module boundaries, reviewable patterns, and UIs other
             engineers can extend without a walkthrough.
           </p>
-        </FadeIn>
+        </Reveal>
 
-        <FadeIn
+        <Reveal
+          variant="rise"
           className="relative col-span-4 border border-surface-variant p-6 lg:col-span-3 lg:col-start-10"
           delay={200}
         >
@@ -73,7 +74,7 @@ export function About() {
               </div>
             ))}
           </div>
-        </FadeIn>
+        </Reveal>
       </div>
     </section>
   );

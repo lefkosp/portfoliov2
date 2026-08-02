@@ -1,4 +1,5 @@
-import { FadeIn } from "./fade-in";
+import { Reveal } from "./reveal";
+import { Scramble } from "./scramble";
 
 export function Contact() {
   return (
@@ -6,7 +7,7 @@ export function Contact() {
       id="contact"
       className="mt-section-gap w-full px-6 lg:px-margin-edge"
     >
-      <FadeIn className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
+      <Reveal className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
         <div className="group relative col-span-4 flex flex-col items-center overflow-hidden border border-surface-variant p-6 py-12 text-center transition-colors duration-300 hover:border-accent sm:p-12 lg:col-span-10 lg:col-start-2 lg:p-24">
           <div
             aria-hidden="true"
@@ -18,8 +19,11 @@ export function Contact() {
           </div>
 
           <h2 className="relative z-10 mb-12 font-display text-headline-xl leading-tight text-foreground">
-            INITIATE <br />
-            <span className="text-outline">CONNECTION</span>
+            <Scramble text="INITIATE" />
+            <br />
+            <span className="text-outline">
+              <Scramble text="CONNECTION" />
+            </span>
           </h2>
 
           <a
@@ -32,7 +36,7 @@ export function Contact() {
             SEND_MESSAGE
           </a>
         </div>
-      </FadeIn>
+      </Reveal>
     </section>
   );
 }

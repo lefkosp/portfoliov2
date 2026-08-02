@@ -1,4 +1,4 @@
-import { FadeIn } from "./fade-in";
+import { Reveal } from "./reveal";
 
 type ExperienceRole = {
   role: string;
@@ -121,11 +121,11 @@ export function Experience() {
       className="mt-section-gap w-full px-6 lg:px-margin-edge"
     >
       <div className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <FadeIn className="col-span-4 lg:col-span-2">
+        <Reveal className="col-span-4 lg:col-span-2">
           <h3 className="flex items-center gap-2 font-display text-label-caps uppercase text-accent">
             <span className="h-[1px] w-4 bg-accent" /> LOG
           </h3>
-        </FadeIn>
+        </Reveal>
 
         <div className="relative col-span-4 flex flex-col gap-16 border-l border-surface-variant pl-8 lg:col-span-8 lg:pl-12">
           {entries.map((entry, i) => {
@@ -133,8 +133,9 @@ export function Experience() {
             const primaryRole = entry.roles[0];
 
             return (
-              <FadeIn
+              <Reveal
                 key={entry.company}
+                variant="left"
                 className="group relative"
                 delay={i * 120}
               >
@@ -175,7 +176,7 @@ export function Experience() {
                 ) : (
                   <ExperienceRoleBlock role={primaryRole} stacked={false} />
                 )}
-              </FadeIn>
+              </Reveal>
             );
           })}
         </div>
