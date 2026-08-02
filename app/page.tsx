@@ -4,7 +4,6 @@ import { Decisions } from "@/components/decisions";
 import { Experience } from "@/components/experience";
 import { Hero } from "@/components/hero";
 import { Lab } from "@/components/lab";
-import { ReferenceBlock } from "@/components/reference-block";
 import { Work } from "@/components/work";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
     <>
       <Hero />
       <About />
-      <ReferenceBlock />
       <Experience />
       <Work />
       <Lab />
