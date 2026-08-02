@@ -21,7 +21,10 @@ const siteDescription =
   "Lead frontend developer modernizing legacy platforms into scalable React architectures, currently on ClearSkies at Odyssey Cybersecurity.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lefkos.dev"),
+  // lefkos.dev still serves the old CRA portfolio. Until the domain is
+  // repointed, canonical/OG URLs must resolve to the deploy that actually
+  // hosts this app or every share preview 404s.
+  metadataBase: new URL("https://lefkos-portfoliov2.netlify.app"),
   title: {
     default: siteName,
     template: "%s // L.PAPAPETROU",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FadeIn } from "./fade-in";
 
 export function Work() {
@@ -16,12 +17,14 @@ export function Work() {
 
       {/* 01, Flagship: shipped full-stack AI product */}
       <FadeIn className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-150 group-hover:border-accent lg:col-span-7 lg:h-auto">
+        <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-150 group-hover:border-accent lg:col-span-7 lg:h-auto lg:min-h-[520px]">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-150 group-hover:bg-transparent" />
-          <img
+          <Image
             src="/work/tweetprenuer.png"
             alt="Tweetprenuer business card generated from an X profile"
-            className="h-full w-full object-cover object-top"
+            fill
+            sizes="(min-width: 1024px) 58vw, 100vw"
+            className="object-cover object-top"
           />
         </div>
 

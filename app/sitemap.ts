@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getDecisions } from "@/lib/decisions";
 
-const BASE_URL = "https://lefkos.dev";
+const BASE_URL = "https://lefkos-portfoliov2.netlify.app";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const decisions = await getDecisions();
