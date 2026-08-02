@@ -1,148 +1,133 @@
 import { getLabEntries, type LabStatus } from "@/lib/lab";
-import { FadeIn } from "./fade-in";
+import { Reveal } from "./reveal";
+import { Scramble } from "./scramble";
 
-function statusClassName(status: LabStatus) {
+function statusColor(status: LabStatus) {
   if (status === "ACTIVE") return "text-accent";
-  return "text-outline";
+  if (status === "PAUSED") return "text-error";
+  return "text-on-surface-variant";
 }
 
+function LedIndicator({ status }: { status: LabStatus }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`inline-block h-2 w-2 shrink-0 ${
+        status === "ACTIVE"
+          ? "animate-pulse bg-accent"
+          : status === "PAUSED"
+            ? "bg-error/60"
+            : "bg-outline"
+      }`}
+    />
+  );
+}
+
+/** A monitor readout rather than another expandable list — Work is editorial,
+ *  Decisions are records, this is a board of things currently running. */
 export function Lab() {
   const entries = getLabEntries();
 
   return (
     <section id="lab" className="mt-section-gap w-full px-6 lg:px-margin-edge">
-      <FadeIn className="mb-12 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <div className="col-span-4 flex items-end justify-between border-b border-surface-variant pb-4 lg:col-span-12">
+      <Reveal variant="clip" className="mb-10">
+        <div className="flex flex-wrap items-end justify-between gap-4 border-b border-surface-variant pb-4">
           <h3 className="font-display text-headline-lg uppercase text-foreground">
-            IN_THE_LAB
+            <Scramble text="IN_THE_LAB" />
           </h3>
-          <span className="hidden font-mono text-technical-mono text-outline md:block">
-            ENTRIES: {entries.length.toString().padStart(2, "0")}
+          <span className="font-mono text-technical-mono text-outline">
+            RUNNING: {entries.length.toString().padStart(2, "0")}
           </span>
         </div>
-      </FadeIn>
+      </Reveal>
 
-      <div className="grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <FadeIn className="col-span-4 lg:col-span-2">
-          <h4 className="flex items-center gap-2 font-display text-label-caps uppercase text-accent">
-            <span className="h-[1px] w-4 bg-accent" /> LAB
-          </h4>
-          <p className="mt-4 hidden font-sans text-body-md text-on-surface-variant lg:block">
-            Experiments and products in progress. Source on GitHub only until
-            there is a demo worth shipping.
-          </p>
-        </FadeIn>
+      <Reveal className="mb-10 max-w-[46rem]" delay={60}>
+        <p className="font-sans text-body-md text-on-surface-variant">
+          Work in progress, listed honestly. Source is public from day one;
+          nothing here claims to be finished.
+        </p>
+      </Reveal>
 
-        <ul className="col-span-4 flex flex-col lg:col-span-9">
-          {entries.map((entry, index) => {
-            const record: Array<[string, string]> = [
-              ["PROBLEM", entry.problem],
-              ["BUILT", entry.built],
-              ["NEXT", entry.next],
-            ];
+      <div className="border border-surface-variant">
+        <div className="hidden grid-cols-[auto_1.6fr_1.4fr_auto] gap-6 border-b border-surface-variant bg-surface-container-lowest px-5 py-3 font-mono text-[10px] uppercase tracking-widest text-outline lg:grid">
+          <span className="w-20">ID</span>
+          <span>Module</span>
+          <span>Next milestone</span>
+          <span className="w-28 text-right">State</span>
+        </div>
 
-            return (
-              <li
-                key={entry.slug}
-                className="border-t border-surface-variant first:border-t-0 lg:first:border-t"
-              >
-                <FadeIn delay={index * 100}>
-                  <details className="group">
-                    <summary className="grid cursor-pointer list-none grid-cols-4 gap-gutter py-8 transition-colors duration-150 [&::-webkit-details-marker]:hidden lg:grid-cols-9">
-                      <span className="col-span-4 whitespace-nowrap font-mono text-technical-mono text-accent lg:col-span-2">
-                        <span aria-hidden="true" className="text-outline">
-                          <span className="group-open:hidden">[+]</span>
-                          <span className="hidden group-open:inline">[-]</span>
-                        </span>{" "}
-                        {entry.id}
-                      </span>
+        {entries.map((entry, index) => (
+          <Reveal
+            key={entry.slug}
+            variant="left"
+            delay={index * 90}
+            className="border-b border-surface-variant last:border-b-0"
+          >
+            <div className="group grid grid-cols-1 gap-4 px-5 py-6 transition-colors duration-200 hover:bg-surface-container-low lg:grid-cols-[auto_1.6fr_1.4fr_auto] lg:items-start lg:gap-6">
+              <div className="flex w-20 items-center gap-2 font-mono text-technical-mono text-outline">
+                <LedIndicator status={entry.status} />
+                {entry.id}
+              </div>
 
-                      <div className="col-span-4 flex flex-col gap-3 lg:col-span-4">
-                        <h4 className="font-display text-headline-md leading-tight text-foreground transition-colors duration-150 group-hover:text-accent">
-                          {entry.name}
-                        </h4>
-                        <p className="font-sans text-body-md text-on-surface-variant group-open:hidden">
-                          <span className="font-mono text-technical-mono text-outline">
-                            NEXT {"//"}
-                          </span>{" "}
-                          {entry.next}
-                        </p>
-                      </div>
+              <div className="flex flex-col gap-2">
+                <h4 className="font-display text-headline-md leading-tight text-foreground transition-colors duration-200 group-hover:text-accent">
+                  {entry.name}
+                </h4>
+                <p className="font-sans text-body-md text-on-surface-variant">
+                  {entry.problem}
+                </p>
+                <div className="mt-1 flex flex-wrap gap-2">
+                  {entry.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-outline"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-                      <div className="col-span-4 flex flex-col gap-2 font-mono text-technical-mono uppercase lg:col-span-3 lg:items-end lg:text-right">
-                        <span className="text-outline">{entry.date}</span>
-                        <span className={statusClassName(entry.status)}>
-                          {entry.status}
-                        </span>
-                      </div>
-                    </summary>
+              <p className="font-sans text-body-md text-on-surface-variant">
+                <span className="mr-2 font-mono text-[10px] uppercase tracking-widest text-outline lg:hidden">
+                  Next //
+                </span>
+                {entry.next}
+              </p>
 
-                    <div className="pb-10 lg:pl-[calc((100%+24px)*2/9)]">
-                      <dl className="border border-surface-variant">
-                        {record.map(([label, value]) => (
-                          <div
-                            key={label}
-                            className="grid grid-cols-1 gap-2 border-b border-surface-variant p-5 last:border-b-0 lg:grid-cols-[120px_1fr] lg:gap-6"
-                          >
-                            <dt className="font-mono text-technical-mono text-accent">
-                              {label} {"//"}
-                            </dt>
-                            <dd className="font-sans text-body-md text-on-surface-variant">
-                              {value}
-                            </dd>
-                          </div>
-                        ))}
-                      </dl>
-
-                      <div className="mt-6 flex flex-wrap items-center gap-4">
-                        <div className="flex flex-wrap gap-2">
-                          {entry.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="border border-surface-variant px-2 py-1 font-mono text-[10px] text-on-surface-variant"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <a
-                          href={entry.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`View ${entry.name} source code on GitHub`}
-                          className="group/link ml-auto inline-flex items-center gap-3 font-mono text-technical-mono uppercase text-on-surface-variant transition-colors duration-150 hover:text-accent"
-                        >
-                          SOURCE
-                          <span
-                            aria-hidden="true"
-                            className="inline-block transition-transform duration-150 group-hover/link:translate-x-1"
-                          >
-                            ↗
-                          </span>
-                        </a>
-                      </div>
-                    </div>
-                  </details>
-                </FadeIn>
-              </li>
-            );
-          })}
-        </ul>
+              <div className="flex w-full flex-row items-center justify-between gap-2 font-mono text-technical-mono lg:w-28 lg:flex-col lg:items-end lg:justify-start">
+                <span className={statusColor(entry.status)}>
+                  {entry.status}
+                </span>
+                <span className="text-outline">{entry.date}</span>
+                <a
+                  href={entry.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${entry.name} source code on GitHub`}
+                  className="uppercase text-on-surface-variant transition-colors duration-200 hover:text-accent"
+                >
+                  SOURCE ↗
+                </a>
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
 
-      <FadeIn className="mt-8 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12">
-        <p className="col-span-4 font-mono text-technical-mono text-outline lg:col-span-9 lg:col-start-4">
+      <Reveal className="mt-6" delay={100}>
+        <p className="font-mono text-technical-mono text-outline">
           + more experiments on{" "}
           <a
             href="https://github.com/lefkosp"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-on-surface-variant transition-colors duration-150 hover:text-accent"
+            className="text-on-surface-variant transition-colors duration-200 hover:text-accent"
           >
             github.com/lefkosp ↗
           </a>
         </p>
-      </FadeIn>
+      </Reveal>
     </section>
   );
 }
