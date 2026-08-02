@@ -30,6 +30,8 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.description,
+    // Draft content — see the note in app/blog/page.tsx.
+    robots: { index: false, follow: false },
   };
 }
 

@@ -17,23 +17,17 @@ const navItems: NavItem[] = [
   { id: "work", label: "03_WORK", href: "/#work" },
   { id: "lab", label: "04_LAB", href: "/#lab" },
   { id: "decisions", label: "05_DECISIONS", href: "/#decisions" },
-  { id: "blog", label: "06_BLOG", href: "/#blog" },
-  { id: "contact", label: "07_CONTACT", href: "/#contact" },
+  { id: "contact", label: "06_CONTACT", href: "/#contact" },
 ];
 
 export function SideNav() {
   const pathname = usePathname();
-  const isBlogRoute = pathname?.startsWith("/blog") ?? false;
   const isDecisionsRoute = pathname?.startsWith("/decisions") ?? false;
   const [scrollSection, setScrollSection] = useState<string | null>(null);
-  const activeSection = isBlogRoute
-    ? "blog"
-    : isDecisionsRoute
-      ? "decisions"
-      : scrollSection;
+  const activeSection = isDecisionsRoute ? "decisions" : scrollSection;
 
   useEffect(() => {
-    if (isBlogRoute || isDecisionsRoute) return;
+    if (isDecisionsRoute) return;
 
     const sections = navItems
       .map((item) => document.getElementById(item.id))
@@ -57,7 +51,7 @@ export function SideNav() {
     sections.forEach((section) => observer.observe(section));
 
     return () => observer.disconnect();
-  }, [isBlogRoute, isDecisionsRoute]);
+  }, [isDecisionsRoute]);
 
   return (
     <nav

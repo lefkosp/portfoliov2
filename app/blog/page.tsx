@@ -1,10 +1,13 @@
 import Link from "next/link";
 import { getBlogPosts } from "@/lib/blog";
 
+// Unlinked and out of the sitemap while the posts are still drafts. Kept
+// buildable so the route is there the moment there's something worth reading.
 export const metadata = {
   title: "BLOG // KNOWLEDGE_BASE",
   description:
     "Notes on frontend systems, product interfaces, and performance.",
+  robots: { index: false, follow: false },
 };
 
 export default async function BlogPage() {

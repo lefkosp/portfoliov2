@@ -64,7 +64,6 @@ const SECTION_TARGETS: Record<string, string> = {
   work: "/#work",
   lab: "/#lab",
   decisions: "/#decisions",
-  blog: "/#blog",
   contact: "/#contact",
 };
 
