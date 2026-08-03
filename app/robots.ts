@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://lefkos-portfoliov2.netlify.app/sitemap.xml",
+    sitemap: "https://lefkos.dev/sitemap.xml",
   };
 }
