@@ -50,7 +50,97 @@ export function Work() {
         </div>
       </Reveal>
 
-      {/* 01, Flagship: shipped full-stack AI product */}
+      {/* 01, Highlight: shipped group-trip planner, live for a real trip */}
+      <Reveal
+        variant="rise"
+        className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
+      >
+        {/* aspect-[480/1039] is the gif's real shape, not a guess — cover only ever
+            needs to crop when the box and the media disagree. self-start stops grid's
+            default row-stretch from silently overriding the ratio here: this column
+            sits next to a long paragraph, stretch would pull it to that height, and
+            cover would crop whatever stretch added. */}
+        <div className="relative col-span-4 aspect-[480/1039] self-start overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-4">
+          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
+          <Image
+            src="/work/trippio-demo.gif"
+            alt="Trippio walkthrough: an idea is typed into the capture bar, voted on, approved, and a Claude-suggested time slot lands it on the day's itinerary"
+            fill
+            unoptimized
+            sizes="(min-width: 1024px) 32vw, 100vw"
+            className="object-cover object-top"
+          />
+        </div>
+
+        <div className="col-span-4 flex flex-col justify-center lg:col-span-7 lg:col-start-6">
+          <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
+            &gt; ./TRIPPIO.exe
+            <span className="animate-pulse text-technical-mono">●</span>
+            <span className="text-outline">LIVE</span>
+          </div>
+          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
+            TRIPPIO
+          </h4>
+          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
+            A trip planned by the four people going on it, not by whoever
+            volunteers to own a spreadsheet. Reels and links get captured and
+            voted on before they&apos;re lost, then promoted straight into an
+            itinerary — the messy group phase most planning apps skip past.
+            Built for a real China trip: offline-first with an
+            IndexedDB-persisted cache for a spotty network, WGS-84→GCJ-02
+            coordinate conversion so pins land correctly on Chinese map
+            providers, and Claude-suggested day/time slots for a promoted
+            idea.
+          </p>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {["REACT", "EXPRESS", "MONGODB", "CLAUDE_API"].map((tag) => (
+              <span key={tag} className={tagClass}>
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <DecisionLinks project="TRIPPIO" />
+
+          <div className="flex flex-wrap items-center gap-6">
+            <a
+              href="https://trippio.xyz/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open a live Trippio demo trip"
+              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-200 hover:border-accent hover:text-accent"
+            >
+              TRY_DEMO
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
+              >
+                →
+              </span>
+            </a>
+            <a
+              href="https://github.com/lefkosp/trippio-client"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Trippio client source code"
+              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+            >
+              SOURCE (CLIENT) ↗
+            </a>
+            <a
+              href="https://github.com/lefkosp/trippio-server"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Trippio server source code"
+              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+            >
+              SOURCE (SERVER) ↗
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* 02, Flagship: shipped full-stack AI product */}
       <Reveal
         variant="rise"
         className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
@@ -122,92 +212,7 @@ export function Work() {
         </div>
       </Reveal>
 
-      {/* 02, Highlight: shipped group-trip planner, live for a real trip */}
-      <Reveal
-        variant="rise"
-        className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
-      >
-        <div className="relative col-span-4 aspect-[9/17] overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-5 lg:aspect-auto lg:min-h-[560px]">
-          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
-          <Image
-            src="/work/trippio-demo.gif"
-            alt="Trippio walkthrough: an idea is typed into the capture bar, voted on, approved, and a Claude-suggested time slot lands it on the day's itinerary"
-            fill
-            unoptimized
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="object-cover object-top"
-          />
-        </div>
-
-        <div className="col-span-4 flex flex-col justify-center lg:col-span-6 lg:col-start-7">
-          <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
-            &gt; ./TRIPPIO.exe
-            <span className="animate-pulse text-technical-mono">●</span>
-            <span className="text-outline">LIVE</span>
-          </div>
-          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
-            TRIPPIO
-          </h4>
-          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
-            A trip planned by the four people going on it, not by whoever
-            volunteers to own a spreadsheet. Reels and links get captured and
-            voted on before they&apos;re lost, then promoted straight into an
-            itinerary — the messy group phase most planning apps skip past.
-            Built for a real China trip: offline-first with an
-            IndexedDB-persisted cache for a spotty network, WGS-84→GCJ-02
-            coordinate conversion so pins land correctly on Chinese map
-            providers, and Claude-suggested day/time slots for a promoted
-            idea.
-          </p>
-          <div className="mb-8 flex flex-wrap gap-2">
-            {["REACT", "EXPRESS", "MONGODB", "CLAUDE_API"].map((tag) => (
-              <span key={tag} className={tagClass}>
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <DecisionLinks project="TRIPPIO" />
-
-          <div className="flex flex-wrap items-center gap-6">
-            <a
-              href="https://trippio.xyz/demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open a live Trippio demo trip"
-              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-200 hover:border-accent hover:text-accent"
-            >
-              TRY_DEMO
-              <span
-                aria-hidden="true"
-                className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
-              >
-                →
-              </span>
-            </a>
-            <a
-              href="https://github.com/lefkosp/trippio-client"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Trippio client source code"
-              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
-            >
-              SOURCE (CLIENT) ↗
-            </a>
-            <a
-              href="https://github.com/lefkosp/trippio-server"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Trippio server source code"
-              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
-            >
-              SOURCE (SERVER) ↗
-            </a>
-          </div>
-        </div>
-      </Reveal>
-
-      {/* 02, Hackathon product */}
+      {/* 03, Hackathon product */}
       <Reveal
         variant="rise"
         className="group relative mb-32 grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
