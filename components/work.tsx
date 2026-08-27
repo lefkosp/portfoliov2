@@ -130,9 +130,10 @@ export function Work() {
         <div className="relative col-span-4 aspect-[9/17] overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-5 lg:aspect-auto lg:min-h-[560px]">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
           <Image
-            src="/work/trippio.png"
-            alt="Trippio's Today screen: a timed Forbidden City entry with its Chinese name, nearest metro stop, and a booking-window warning"
+            src="/work/trippio-demo.gif"
+            alt="Trippio walkthrough: an idea is typed into the capture bar, voted on, approved, and a Claude-suggested time slot lands it on the day's itinerary"
             fill
+            unoptimized
             sizes="(min-width: 1024px) 42vw, 100vw"
             className="object-cover object-top"
           />
