@@ -1,0 +1,63 @@
+export const metadata = {
+  id: "ADR-006",
+  title: "A dead network and a dead session look identical — don't treat them the same",
+  date: "2026-08-20",
+  status: "ACCEPTED",
+  project: "TRIPPIO",
+  context:
+    "A four-person China trip planner that has to work on a phone, offline, possibly behind the GFW. The access token refresh calls the same endpoint whether the network is down or the session is genuinely expired: both come back as a failed request.",
+  options:
+    "Treat every refresh failure as logged out // add a heuristic timeout before giving up // distinguish a network failure from a rejected session and branch on which one happened",
+  decision:
+    "Catch the fetch failure itself (a NetworkError) before it reaches the same code path as a 401. A network failure sets an isOffline flag and renders read-only from the cached identity and the IndexedDB-persisted query cache; an actual rejection clears the session and bounces to /login.",
+  tradeoff:
+    "Every screen that gates on \"am I allowed to write\" now has to check isOffline in addition to isReadOnly for a share link, which is two reasons for the same UI state to be true, discovered the hard way in the middle of unrelated screens.",
+  outcome:
+    "Killing the network and reloading mid-trip renders the full cached itinerary read-only, with a banner that says why, instead of logging the device out of its own offline cache. Found a second bug for free while wiring the persistence: React Query's gcTime is passed straight to setTimeout, whose delay is a 32-bit signed int (~24.8 day ceiling) — a 30-day gcTime overflowed it and silently garbage-collected every unobserved cached query within about a second of creation.",
+  revisit:
+    "isReadOnly now collapses two causes into one flag, which is exactly the ambiguity this decision was supposed to eliminate — it just moved from the network layer to the UI layer. The badge that names the reason was a later, smaller fix for the same root habit: two different truths sharing one boolean eventually leaks somewhere.",
+};
+
+The naive version of token refresh treats "the request failed" as one bucket:
+clear the session, send the user to `/login`. That's correct exactly once —
+when the server has genuinely rejected the refresh token. It's wrong every
+other time a phone has ever lost signal, which on a trip through rural China
+is not a rare event.
+
+## Why they're the same shape
+
+A `fetch` to `/auth/refresh` fails identically whether the server said no or
+never got asked. Both surface as a rejected promise. Distinguishing them means
+catching the network-level failure — a `NetworkError` — before it's treated as
+an HTTP response at all, and branching before any state gets cleared.
+
+## What "offline" has to mean
+
+Getting the distinction right is only useful if offline actually degrades
+gracefully. The query cache persists to IndexedDB, so the trip — days, events,
+places, bookings, proposals — is still on the device. Losing the network sets
+`isOffline` and renders that cache read-only, rather than clearing an identity
+the device still has perfectly good proof of. The alternative — a dead network
+locking you out of your own offline cache — is the specific failure this
+existed to prevent, and it's the one failure mode a travel app cannot ship
+with.
+
+## The bug this surfaced
+
+Wiring up the persistence layer turned up an unrelated one: `gcTime: Infinity`
+exists because a literal 30-day value doesn't mean what it looks like it
+means. React Query passes `gcTime` straight to `setTimeout`, whose delay
+argument is a 32-bit signed integer — about a 24.8-day ceiling. Thirty days
+overflows it, and the browser fires the timer almost immediately instead of
+in thirty days, silently garbage-collecting every unobserved cached query
+within about a second of creation. Reproduced live before the fix: set a
+query via `setQueryData` with no mounted observer, watch it vanish from the
+cache in under two seconds.
+
+## The pattern worth keeping
+
+Two different failures that produce identical symptoms are a bug waiting for
+someone to write the wrong `catch` block. The fix is never "handle the error";
+it's "figure out which of the two things that look like the same error
+actually happened," as early as possible, before anything downstream has to
+guess.
