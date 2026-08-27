@@ -59,8 +59,10 @@ export function Work() {
             needs to crop when the box and the media disagree. self-start stops grid's
             default row-stretch from silently overriding the ratio here: this column
             sits next to a long paragraph, stretch would pull it to that height, and
-            cover would crop whatever stretch added. */}
-        <div className="relative col-span-4 aspect-[480/1039] self-start overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-4">
+            cover would crop whatever stretch added. max-w caps it as a small framed
+            phone rather than a slab that fills the whole grid column — full column
+            width at this aspect ratio towered over the text next to it. */}
+        <div className="relative col-span-4 mx-auto w-full max-w-[260px] aspect-[480/1039] self-start overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-4 lg:mx-0">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
           <Image
             src="/work/trippio-demo.gif"
@@ -145,19 +147,25 @@ export function Work() {
         variant="rise"
         className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
       >
-        <div className="relative col-span-4 h-[400px] overflow-hidden border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-7 lg:h-auto lg:min-h-[520px]">
+        {/* order-1/order-2 keeps the image on top on mobile regardless of which side
+            it sits on at lg — Trippio's image is left/first everywhere, this one is
+            right/second at lg, so without the order swap it would stack below the
+            text on mobile instead of above it. self-start plus a real min-h (rather
+            than the old lg:min-h-[520px] slab) keeps this a bounded frame instead of
+            a box that fills whatever height the row ends up being. */}
+        <div className="relative order-1 col-span-4 h-[320px] self-start overflow-hidden border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:order-2 lg:col-span-6 lg:col-start-7 lg:h-[420px]">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
           <Image
             src="/work/tweetprenuer.png"
             alt="Tweetprenuer business card generated from an X profile"
             fill
-            sizes="(min-width: 1024px) 58vw, 100vw"
+            sizes="(min-width: 1024px) 32vw, 100vw"
             className="object-cover object-top"
             priority
           />
         </div>
 
-        <div className="col-span-4 flex flex-col justify-center lg:col-span-4 lg:col-start-9">
+        <div className="order-2 col-span-4 flex flex-col justify-center lg:order-1 lg:col-span-4">
           <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
             &gt; ./TWEETPRENUER.exe
             <span className="animate-pulse text-technical-mono">●</span>
