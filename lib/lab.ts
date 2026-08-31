@@ -32,7 +32,7 @@ export const labEntries: LabEntry[] = [
     id: "LAB-02",
     name: "REVIEWSNAP",
     slug: "reviewsnap",
-    status: "STARTED",
+    status: "PAUSED",
     date: "2025-07",
     problem:
       "Let creators collect testimonials, customize an embeddable widget, and publish a public review page.",
@@ -49,7 +49,7 @@ export const labEntries: LabEntry[] = [
     status: "ACTIVE",
     date: "2026-07",
     problem:
-      "Live market-watch dashboard for trading/forex platforms — streaming price data, not a static demo.",
+      "Live market-watch dashboard for trading/forex platforms: streaming price data, not a static demo.",
     built:
       "Vite/React app with a reconnect-with-exponential-backoff WebSocket client, RTK Query for historical candles, a live watchlist and candlestick chart fed from Binance's public feed, and a connection-status indicator.",
     next: "Virtualized order book that holds 60fps under load, profiled and written up, plus P&L math tests.",

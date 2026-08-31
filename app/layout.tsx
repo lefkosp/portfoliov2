@@ -18,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 
 const siteName = "L.PAPAPETROU // LEAD_FRONTEND_DEVELOPER";
 const siteDescription =
-  "Lead frontend developer modernizing legacy platforms into scalable React architectures, currently on ClearSkies at Odyssey Cybersecurity.";
+  "Lead frontend developer working in React and TypeScript. Frontend architecture and the shared component library for ClearSkies at Odyssey Cybersecurity.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://lefkos.dev"),

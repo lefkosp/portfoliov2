@@ -23,7 +23,7 @@ function LedIndicator({ status }: { status: LabStatus }) {
   );
 }
 
-/** A monitor readout rather than another expandable list — Work is editorial,
+/** A monitor readout rather than another expandable list. Work is editorial,
  *  Decisions are records, this is a board of things currently running. */
 export function Lab() {
   const entries = getLabEntries();

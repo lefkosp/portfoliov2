@@ -47,7 +47,7 @@ export default function OpenGraphImage() {
           <span style={{ display: "flex" }}>
             FOCUS:&nbsp;
             <span style={{ color: "#efe6d3" }}>
-              LEGACY_PLATFORMS → REACT
+              ARCHITECTURE + SHARED_UI
             </span>
           </span>
           <span style={{ color: "#5c4f30" }}>{"*/"}</span>

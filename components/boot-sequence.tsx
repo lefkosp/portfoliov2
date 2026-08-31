@@ -6,7 +6,7 @@ const SEQUENCE = [
   "$ ./init --profile lefkos",
   "MOUNT  :: experience.log ....... OK",
   "ROLE   :: LEAD_FRONTEND_DEVELOPER",
-  "FOCUS  :: LEGACY_PLATFORMS -> REACT",
+  "FOCUS  :: ARCHITECTURE + SHARED_UI",
   "STATUS :: ONLINE",
 ];
 
@@ -62,7 +62,8 @@ export function BootSequence() {
   return (
     <div className="border-l border-surface-variant pl-4 font-mono text-technical-mono text-accent">
       <span className="sr-only">
-        Lead frontend developer. Focus: modernizing legacy platforms into React.
+        Lead frontend developer. Focus: React architecture and the shared
+        component library four of the company&apos;s products are built on.
         Status: online.
       </span>
 

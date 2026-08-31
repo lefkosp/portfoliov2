@@ -32,14 +32,14 @@ const entries: ExperienceEntry[] = [
         role: "Lead Software Developer (Frontend) // ClearSkies",
         period: "MAY_2026 -> PRESENT",
         description:
-          "Own frontend architecture for ClearSkies: module boundaries, shared patterns, and long-term React platform direction. Lead a small frontend team through mentoring, structured code reviews, and unblocking delivery while raising the quality bar.",
+          "Replaced a 7-layer architecture with a flat, conventional React structure, cutting the number of files a typical feature touches. Still building features in it day to day. Own the shared UI component library end to end: 40+ components on shadcn/ui, used by four products across the company, not just ClearSkies. Lead three frontend developers through mentoring and code review, and brought the team onto an AI-assisted workflow with Claude Code, now our default way of building features.",
         current: true,
       },
       {
         role: "Software Developer (Frontend) // ClearSkies",
         period: "JUN_2025 -> MAY_2026",
         description:
-          "Core contributor to the ClearSkies rewrite from C#/Ext.NET to React. Shipped composable component systems that replaced a brittle legacy UI layer, reducing developer onboarding friction and improving cross-team maintainability across the platform.",
+          "Built the client-side dashboard engine: users compose their own dashboards from around 130 widget types, reordering and resizing on a grid, with new widget types dropping in without touching the engine. One of the core contributors on the rewrite from C#/Ext.NET to React, moving around 20 modules off the legacy stack and building the component systems that replaced it.",
       },
     ],
   },
@@ -51,7 +51,7 @@ const entries: ExperienceEntry[] = [
         role: "Frontend Developer",
         period: "APR_2022 -> MAY_2025",
         description:
-          "Owned frontend delivery on an internal staffing platform for three years: shipped the original scheduling module in Angular/TypeScript, then kept building calendar-heavy features on top, including an automatic shift-to-staff assignment engine. Wrote unit tests throughout and, with no dedicated designer on the team, owned UI design decisions directly, iterating 2-3 directions per feature before committing.",
+          "Sole frontend owner of a staffing and scheduling platform used across 10+ regions in Sweden. Shipped the original scheduling module in Angular/TypeScript, then three years of calendar-heavy features on top, including the platform's first automatic shift-to-staff assignment engine. Built the API endpoints behind those features and covered that backend work with Mocha unit tests. Designed the UI myself; the team had no designer.",
       },
     ],
   },
@@ -60,10 +60,10 @@ const entries: ExperienceEntry[] = [
     company: "PRIMOTHEPLUG",
     roles: [
       {
-        role: "Owner & Digital Strategist",
+        role: "Owner",
         period: "SEP_2018 -> SEP_2021",
         description:
-          "Built and maintained a custom e-commerce platform end-to-end: product pages, landing flows, and conversion-optimized checkout. Owned the frontend layer alongside inventory systems and pricing logic. Business strategy and social channel growth drove recurring brand partnerships.",
+          "Ran an e-commerce brand end to end: built the storefront, product pages, and a conversion-optimized checkout, and owned the frontend layer alongside inventory and pricing logic. Grew three social channels into recurring brand partnerships.",
       },
     ],
   },

@@ -24,21 +24,21 @@ const WELCOME: Line[] = [
 
 const FILES: Record<string, string[]> = {
   "about.txt": [
-    "Frontend engineer specializing in modernizing legacy systems",
-    "into scalable, maintainable UI architectures.",
+    "React and TypeScript developer, promoted to frontend lead",
+    "within a year of joining Odyssey Cybersecurity.",
     "Rebuilt enterprise platforms from Ext.NET to React.",
     "Shipped modular Angular systems from the ground up.",
   ],
   "stack.txt": [
     "CORE     :: TYPESCRIPT, REACT, ANGULAR, NEXT.JS",
-    "PLATFORM :: NODE.JS, REST, WEBSOCKETS",
-    "DELIVERY :: DESIGN_SYSTEMS, GIT, VITE",
+    "PLATFORM :: NODE.JS, EXPRESS, REST, WEBSOCKETS, TAILWIND",
+    "DELIVERY :: DESIGN_SYSTEMS, UNIT_TESTING, GIT, CI/CD, PWA",
   ],
   "experience.log": [
     "[2026] ODYSSEY CYBERSECURITY :: Lead Software Developer (Frontend)",
     "[2025] ODYSSEY CYBERSECURITY :: Software Developer (Frontend)",
     "[2022] MEDLO                 :: Frontend Developer",
-    "[2018] PRIMOTHEPLUG          :: Owner & Digital Strategist",
+    "[2018] PRIMOTHEPLUG          :: Owner",
   ],
   "contact.txt": [
     "EMAIL  :: paplefkos@gmail.com",

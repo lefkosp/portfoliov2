@@ -7,11 +7,11 @@ const techStack = [
   },
   {
     category: "PLATFORM //",
-    items: ["NODE.JS", "REST", "WEBSOCKETS"],
+    items: ["NODE.JS", "EXPRESS", "REST", "WEBSOCKETS", "TAILWIND"],
   },
   {
     category: "DELIVERY //",
-    items: ["DESIGN_SYSTEMS", "GIT", "VITE"],
+    items: ["DESIGN_SYSTEMS", "UNIT_TESTING", "GIT", "CI/CD", "PWA"],
   },
 ];
 
@@ -35,17 +35,17 @@ export function About() {
           delay={100}
         >
           <p>
-            Lead frontend developer specializing in modernizing legacy systems
-            into scalable, maintainable UI architectures. I&apos;ve rebuilt
-            enterprise platforms from Ext.NET to React and shipped modular
-            Angular systems from the ground up.
+            React and TypeScript developer, promoted to frontend lead within a
+            year of joining Odyssey Cybersecurity. I&apos;ve rebuilt enterprise
+            platforms from Ext.NET to React and shipped modular Angular systems
+            from the ground up.
           </p>
           <p>
-            Currently leading frontend on ClearSkies at Odyssey Cybersecurity,
-            owning architecture direction, mentoring the team, and driving a
-            full platform rewrite. I optimize for code that outlives the sprint:
-            clear module boundaries, reviewable patterns, and UIs other
-            engineers can extend without a walkthrough.
+            I own the frontend architecture for ClearSkies and the component
+            library four of the company&apos;s products are built on, and I lead
+            a team of three through a legacy rewrite. I optimize for code that
+            outlives the sprint: clear module boundaries, reviewable patterns,
+            and UIs other engineers can extend without a walkthrough.
           </p>
         </Reveal>
 

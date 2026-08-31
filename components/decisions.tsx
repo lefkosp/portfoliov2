@@ -11,7 +11,7 @@ export async function Decisions() {
       id="decisions"
       className="mt-section-gap w-full px-6 lg:px-margin-edge"
     >
-      {/* The one section that switches phosphor colour — it is the argument
+      {/* The one section that switches phosphor colour; it is the argument
           the whole site is making, so it should not look like the lists
           above and below it. */}
       <div className="relative border border-signal-dim bg-signal-surface px-6 py-12 lg:px-12 lg:py-16">
@@ -34,7 +34,7 @@ export async function Decisions() {
             Not a blog. Every non-obvious call I&apos;ve made on a real
             project, written up the way I&apos;d write it for a team: the
             constraint, the options I rejected, what the choice cost me, and
-            what I&apos;d do differently. The mistakes are in here too —
+            what I&apos;d do differently. The mistakes are in here too;
             they&apos;re the useful part.
           </p>
         </Reveal>

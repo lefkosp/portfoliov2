@@ -55,12 +55,12 @@ export function Work() {
         variant="rise"
         className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
       >
-        {/* aspect-[480/1039] is the gif's real shape, not a guess — cover only ever
+        {/* aspect-[480/1039] is the gif's real shape, not a guess; cover only ever
             needs to crop when the box and the media disagree. self-start stops grid's
             default row-stretch from silently overriding the ratio here: this column
             sits next to a long paragraph, stretch would pull it to that height, and
             cover would crop whatever stretch added. max-w caps it as a small framed
-            phone rather than a slab that fills the whole grid column — full column
+            phone rather than a slab that fills the whole grid column; full column
             width at this aspect ratio towered over the text next to it. */}
         <div className="relative col-span-4 mx-auto w-full max-w-[260px] aspect-[480/1039] self-start overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-4 lg:mx-0">
           <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
@@ -87,8 +87,8 @@ export function Work() {
             A trip planned by the four people going on it, not by whoever
             volunteers to own a spreadsheet. Reels and links get captured and
             voted on before they&apos;re lost, then promoted straight into an
-            itinerary — the messy group phase most planning apps skip past.
-            Built for a real China trip: offline-first with an
+            itinerary. That messy group phase is the part most planning apps
+            skip past. Built for a real China trip: offline-first with an
             IndexedDB-persisted cache for a spotty network, WGS-84→GCJ-02
             coordinate conversion so pins land correctly on Chinese map
             providers, and Claude-suggested day/time slots for a promoted
@@ -148,7 +148,7 @@ export function Work() {
         className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
       >
         {/* order-1/order-2 keeps the image on top on mobile regardless of which side
-            it sits on at lg — Trippio's image is left/first everywhere, this one is
+            it sits on at lg. Trippio's image is left/first everywhere, this one is
             right/second at lg, so without the order swap it would stack below the
             text on mobile instead of above it. self-start plus a real min-h (rather
             than the old lg:min-h-[520px] slab) keeps this a bounded frame instead of
@@ -178,8 +178,7 @@ export function Work() {
             Shipped full-stack AI product: drop an X handle and get a
             generated, shareable business card. Angular 19 frontend, Express +
             MongoDB backend with response caching to control API spend, an
-            OpenAI prompt pipeline, and a screenshot share-to-X flow. 120+
-            cards generated in the wild.
+            OpenAI prompt pipeline, and a screenshot share-to-X flow.
           </p>
           <div className="mb-8 flex flex-wrap gap-2">
             {["ANGULAR", "EXPRESS", "MONGODB", "OPENAI"].map((tag) => (
@@ -262,7 +261,7 @@ export function Work() {
         </div>
 
         <div className="col-span-4 lg:col-span-5 lg:col-start-8">
-          <OutputFrame title="booking.socket — live">
+          <OutputFrame title="booking.socket // live">
             <div className="flex flex-col gap-1 text-on-surface-variant">
               <span>
                 <span className="text-outline">12:04:11</span>{" "}
@@ -352,7 +351,7 @@ export function Work() {
         </div>
 
         <div className="col-span-4 lg:col-span-5 lg:col-start-8">
-          <OutputFrame title="schema in — form out">
+          <OutputFrame title="schema in // form out">
             <div className="flex flex-col gap-1 text-on-surface-variant">
               <span>
                 <span className="text-accent">const</span> schema = {"{"}
