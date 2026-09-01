@@ -33,7 +33,7 @@ const entries: ExperienceEntry[] = [
         period: "MAY_2026 -> PRESENT",
         bullets: [
           "Replaced a 7-layer architecture with a flat, conventional React structure, cutting the number of files a typical feature touches. Still building features in it day to day.",
-          "Own the shared UI component library end to end: 150+ components on shadcn/ui, used by four products across the company, not just ClearSkies.",
+          "Own the shared UI component library end to end: 40+ components on shadcn/ui, used by four products across the company, not just ClearSkies.",
           "Lead three frontend developers through mentoring and code review, and brought the team onto an AI-assisted workflow with Claude Code, now our default way of building features.",
         ],
         current: true,
