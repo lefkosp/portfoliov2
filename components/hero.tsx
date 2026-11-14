@@ -1,5 +1,4 @@
 import { BootSequence } from "./boot-sequence";
-import { Scramble } from "./scramble";
 
 /** Answers the recruiter's first three questions (level, where, how long)
  *  without a scroll. */
@@ -24,17 +23,17 @@ export function Hero() {
             <BootSequence />
           </div>
 
-          <h1 className="animate-fade-in font-display text-headline-xl leading-tight text-foreground">
-            <Scramble text="LEFKOS" startDelay={900} />
+          {/* The name is the one string that must read on the first frame, so
+              it renders static; the boot sequence above carries the motion. */}
+          <h1 className="font-display text-headline-xl leading-tight text-foreground">
+            LEFKOS
             <br />
-            <span className="text-outline">
-              <Scramble text="PAPAPETROU" startDelay={1050} />
-            </span>
+            <span className="text-outline">PAPAPETROU</span>
           </h1>
 
           <div
             className="animate-fade-in-up relative flex w-fit items-center gap-4 border-t border-surface-variant pr-12 pt-6"
-            style={{ animationDelay: "1400ms" }}
+            style={{ animationDelay: "250ms" }}
           >
             <div className="absolute -right-[3px] -top-[3px] h-[5px] w-[5px] bg-accent" />
             <h2 className="phosphor font-display text-headline-md text-on-surface">
@@ -44,7 +43,7 @@ export function Hero() {
 
           <dl
             className="animate-fade-in-up mt-4 grid grid-cols-2 gap-px border border-surface-variant bg-surface-variant lg:grid-cols-4"
-            style={{ animationDelay: "1600ms" }}
+            style={{ animationDelay: "350ms" }}
           >
             {readout.map((item) => (
               <div
@@ -64,7 +63,7 @@ export function Hero() {
 
         <div
           className="animate-fade-in relative hidden min-h-[400px] border-l border-surface-variant lg:col-span-2 lg:block"
-          style={{ animationDelay: "1800ms" }}
+          style={{ animationDelay: "500ms" }}
         >
           <div className="absolute bottom-0 left-0 h-[1px] w-full bg-surface-variant" />
           <div className="absolute left-1/2 top-1/2 origin-center -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap font-mono text-technical-mono text-outline opacity-50">
