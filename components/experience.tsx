@@ -24,7 +24,7 @@ function companyPeriod(entry: ExperienceEntry): string {
 
 const entries: ExperienceEntry[] = [
   {
-    status: "CURRENT_DEPLOYMENT",
+    status: "CURRENT_ROLE",
     company: "ODYSSEY CYBERSECURITY",
     current: true,
     roles: [
@@ -49,7 +49,7 @@ const entries: ExperienceEntry[] = [
     ],
   },
   {
-    status: "PREVIOUS_NODE",
+    status: "PREVIOUS_ROLE",
     company: "MEDLO",
     roles: [
       {
@@ -66,7 +66,7 @@ const entries: ExperienceEntry[] = [
     ],
   },
   {
-    status: "ARCHIVED_NODE",
+    status: "OWN_BUSINESS",
     company: "PRIMOTHEPLUG",
     roles: [
       {
