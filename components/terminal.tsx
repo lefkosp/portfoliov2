@@ -1,6 +1,5 @@
 "use client";
 
-import { getLabTerminalLines, labOpenTargets } from "@/lib/lab";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
@@ -43,6 +42,7 @@ const FILES: Record<string, string[]> = {
   "contact.txt": [
     "EMAIL  :: paplefkos@gmail.com",
     "GITHUB :: github.com/lefkosp",
+    "LINKEDIN :: linkedin.com/in/lefkosp",
     "send a signal. Response time is usually < 24h.",
   ],
   "decisions.log": [
@@ -51,10 +51,10 @@ const FILES: Record<string, string[]> = {
     "ADR-003 :: AI scaffolds discover the product, they don't ship it",
     "ADR-004 :: In a hackathon, fake the familiar, build the differentiator",
     "ADR-005 :: One declarative API beats fifteen flexible components",
+    "ADR-006 :: A dead network and a dead session look identical",
     "",
     "full records :: 'open decision-log'",
   ],
-  "lab.log": getLabTerminalLines(),
 };
 
 const SECTION_TARGETS: Record<string, string> = {
@@ -62,13 +62,17 @@ const SECTION_TARGETS: Record<string, string> = {
   about: "/#about",
   experience: "/#experience",
   work: "/#work",
-  lab: "/#lab",
   decisions: "/#decisions",
   "decision-log": "/decisions",
   contact: "/#contact",
 };
 
-const EXTERNAL_TARGETS: Record<string, string> = labOpenTargets;
+const EXTERNAL_TARGETS: Record<string, string> = {
+  github: "https://github.com/lefkosp",
+  linkedin: "https://www.linkedin.com/in/lefkosp/",
+  trippio: "https://trippio.xyz/demo",
+  formforge: "https://lefkosp.github.io/formforge/",
+};
 
 const OPEN_TARGETS = [
   ...Object.keys(SECTION_TARGETS),
@@ -177,7 +181,7 @@ export function Terminal() {
           break;
         case "ls":
           print([
-            "about.txt  stack.txt  experience.log  lab.log  decisions.log  contact.txt  cv.pdf",
+            "about.txt  stack.txt  experience.log  decisions.log  contact.txt  cv.pdf",
           ]);
           break;
         case "cat": {

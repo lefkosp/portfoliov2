@@ -9,8 +9,7 @@ const menuItems = [
   { label: "02_EXPERIENCE", href: "/#experience" },
   { label: "03_WORK", href: "/#work" },
   { label: "04_DECISIONS", href: "/#decisions" },
-  { label: "05_LAB", href: "/#lab" },
-  { label: "06_CONTACT", href: "/#contact" },
+  { label: "05_CONTACT", href: "/#contact" },
 ];
 
 export function TopBar() {

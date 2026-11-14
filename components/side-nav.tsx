@@ -16,8 +16,7 @@ const navItems: NavItem[] = [
   { id: "experience", label: "02_EXPERIENCE", href: "/#experience" },
   { id: "work", label: "03_WORK", href: "/#work" },
   { id: "decisions", label: "04_DECISIONS", href: "/#decisions" },
-  { id: "lab", label: "05_LAB", href: "/#lab" },
-  { id: "contact", label: "06_CONTACT", href: "/#contact" },
+  { id: "contact", label: "05_CONTACT", href: "/#contact" },
 ];
 
 export function SideNav() {
