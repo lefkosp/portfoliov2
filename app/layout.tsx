@@ -42,6 +42,10 @@ export const metadata: Metadata = {
   },
 };
 
+/* Runs during HTML parse, before first paint. Reveal's hidden waiting state is
+   scoped under `.js`, so without scripts every section stays visible. */
+const jsFlagScript = "document.documentElement.classList.add('js')";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -53,6 +57,9 @@ export default function RootLayout({
       className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: jsFlagScript }} />
+      </head>
       <body
         className="relative min-h-full bg-background font-sans text-body-md text-foreground"
         suppressHydrationWarning

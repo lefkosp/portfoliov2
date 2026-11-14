@@ -54,7 +54,7 @@ export function Reveal({
   return (
     <div
       ref={ref}
-      className={`${className} ${isVisible ? VARIANT_CLASS[variant] : "opacity-0"}`}
+      className={`${className} ${isVisible ? VARIANT_CLASS[variant] : "reveal-pending"}`}
       style={isVisible && delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}

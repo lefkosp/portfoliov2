@@ -301,6 +301,13 @@ details:not([open])::details-content {
   }
 }
 
+/* Content is visible by default. The layout's inline script adds `js` to
+   <html> before first paint, and only then does Reveal's waiting state hide
+   anything, so a page without scripts (or with a failed bundle) still reads. */
+.js .reveal-pending {
+  opacity: 0;
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -361,7 +368,8 @@ body::before {
   .animate-reveal-line,
   .animate-reveal-clip,
   .animate-slide-in-left,
-  .animate-rise-in {
+  .animate-rise-in,
+  .js .reveal-pending {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
