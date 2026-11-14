@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getDecisionsForProject } from "@/lib/decisions";
+import { DemoVideo } from "./demo-video";
 import { OutputFrame } from "./output-frame";
 import { Reveal } from "./reveal";
 import { Scramble } from "./scramble";
@@ -55,22 +56,20 @@ export function Work() {
         variant="rise"
         className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
       >
-        {/* aspect-[480/1039] is the gif's real shape, not a guess; cover only ever
+        {/* aspect-[480/1039] is the recording's real shape, not a guess; cover only ever
             needs to crop when the box and the media disagree. self-start stops grid's
             default row-stretch from silently overriding the ratio here: this column
             sits next to a long paragraph, stretch would pull it to that height, and
             cover would crop whatever stretch added. max-w caps it as a small framed
             phone rather than a slab that fills the whole grid column; full column
-            width at this aspect ratio towered over the text next to it. */}
+            width at this aspect ratio towered over the text next to it. No dimming
+            overlay here: the recording is the evidence and should read at full contrast. */}
         <div className="relative col-span-4 mx-auto w-full max-w-[260px] aspect-[480/1039] self-start overflow-hidden rounded-sm border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:col-span-4 lg:mx-0">
-          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
-          <Image
-            src="/work/trippio-demo.gif"
-            alt="Trippio walkthrough: an idea is typed into the capture bar, voted on, approved, and a Claude-suggested time slot lands it on the day's itinerary"
-            fill
-            unoptimized
-            sizes="(min-width: 1024px) 32vw, 100vw"
-            className="object-cover object-top"
+          <DemoVideo
+            webm="/work/trippio-demo.webm"
+            mp4="/work/trippio-demo.mp4"
+            poster="/work/trippio-demo-poster.jpg"
+            label="Trippio walkthrough: an idea is typed into the capture bar, voted on, approved, and a Claude-suggested time slot lands it on the day's itinerary"
           />
         </div>
 
@@ -142,160 +141,10 @@ export function Work() {
         </div>
       </Reveal>
 
-      {/* 02, Flagship: shipped full-stack AI product */}
-      <Reveal
-        variant="rise"
-        className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
-      >
-        {/* order-1/order-2 keeps the image on top on mobile regardless of which side
-            it sits on at lg. Trippio's image is left/first everywhere, this one is
-            right/second at lg, so without the order swap it would stack below the
-            text on mobile instead of above it. self-start plus a real min-h (rather
-            than the old lg:min-h-[520px] slab) keeps this a bounded frame instead of
-            a box that fills whatever height the row ends up being. */}
-        <div className="relative order-1 col-span-4 h-[320px] self-start overflow-hidden border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:order-2 lg:col-span-6 lg:col-start-7 lg:h-[420px]">
-          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
-          <Image
-            src="/work/tweetprenuer.png"
-            alt="Tweetprenuer business card generated from an X profile"
-            fill
-            sizes="(min-width: 1024px) 32vw, 100vw"
-            className="object-cover object-top"
-            priority
-          />
-        </div>
-
-        <div className="order-2 col-span-4 flex flex-col justify-center lg:order-1 lg:col-span-4">
-          <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
-            &gt; ./TWEETPRENUER.exe
-            <span className="animate-pulse text-technical-mono">●</span>
-            <span className="text-outline">LIVE</span>
-          </div>
-          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
-            TWEETPRENUER
-          </h4>
-          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
-            Shipped full-stack AI product: drop an X handle and get a
-            generated, shareable business card. Angular 19 frontend, Express +
-            MongoDB backend with response caching to control API spend, an
-            OpenAI prompt pipeline, and a screenshot share-to-X flow.
-          </p>
-          <div className="mb-8 flex flex-wrap gap-2">
-            {["ANGULAR", "EXPRESS", "MONGODB", "OPENAI"].map((tag) => (
-              <span key={tag} className={tagClass}>
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <DecisionLinks project="TWEETPRENUER" />
-
-          <div className="flex flex-wrap items-center gap-6">
-            <a
-              href="https://tweetprenuer.net"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open the live Tweetprenuer app"
-              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-200 hover:border-accent hover:text-accent"
-            >
-              LAUNCH_APP
-              <span
-                aria-hidden="true"
-                className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
-              >
-                →
-              </span>
-            </a>
-            <a
-              href="https://github.com/lefkosp/tweetprenuer"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="View Tweetprenuer source code"
-              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
-            >
-              SOURCE ↗
-            </a>
-          </div>
-        </div>
-      </Reveal>
-
-      {/* 03, Hackathon product */}
+      {/* 02, Component library: echoes the shared-library work at Odyssey */}
       <Reveal
         variant="rise"
         className="group relative mb-32 grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
-      >
-        <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-200 group-hover:border-accent" />
-
-        <div className="col-span-4 flex flex-col lg:col-span-6">
-          <div className="mb-2 font-mono text-technical-mono text-outline">
-            MODULE_02 // FINTECH_HACKATHON
-          </div>
-          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
-            PARKIT
-          </h4>
-          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
-            Parking marketplace PWA built for the Bank of Cyprus Fintech
-            Hackathon: live map with geolocation, booking flow, QR check-in,
-            realtime payment events over WebSockets, push notifications, and a
-            vendor dashboard, end to end against a deployed backend.
-          </p>
-          <div className="mb-8 flex flex-wrap gap-2">
-            {["ANGULAR", "LEAFLET", "SOCKET.IO", "PWA"].map((tag) => (
-              <span key={tag} className={tagClass}>
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <DecisionLinks project="PARKIT" />
-
-          <a
-            href="https://github.com/lefkosp/parkit"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="View Parkit source code"
-            className="mt-auto w-fit font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
-          >
-            SOURCE ↗
-          </a>
-        </div>
-
-        <div className="col-span-4 lg:col-span-5 lg:col-start-8">
-          <OutputFrame title="booking.socket // live">
-            <div className="flex flex-col gap-1 text-on-surface-variant">
-              <span>
-                <span className="text-outline">12:04:11</span>{" "}
-                <span className="text-accent">connect</span> vendor:LARNACA_04
-              </span>
-              <span>
-                <span className="text-outline">12:04:12</span> slot.reserve →{" "}
-                <span className="text-foreground">B-2291</span>
-              </span>
-              <span>
-                <span className="text-outline">12:04:19</span> qr.scan{" "}
-                <span className="text-accent">CHECK_IN</span> ok
-              </span>
-              <span>
-                <span className="text-outline">12:41:03</span> qr.scan{" "}
-                <span className="text-accent">CHECK_OUT</span> 37m
-              </span>
-              <span>
-                <span className="text-outline">12:41:04</span> payment.settled{" "}
-                <span className="text-foreground">€2.47</span>
-              </span>
-              <span className="text-outline">
-                ── vendor dashboard updated ──
-              </span>
-            </div>
-          </OutputFrame>
-        </div>
-      </Reveal>
-
-
-      {/* 04, OSS-style component library */}
-      <Reveal
-        variant="rise"
-        className="group relative grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
       >
         <div className="absolute bottom-0 right-0 h-8 w-8 border-l border-t border-surface-variant transition-colors duration-200 group-hover:border-accent" />
 
@@ -378,6 +227,154 @@ export function Work() {
               </span>
               <span className="text-outline">
                 ── labels, a11y wiring, errors, layout ──
+              </span>
+            </div>
+          </OutputFrame>
+        </div>
+      </Reveal>
+
+      {/* 03, Shipped full-stack AI product */}
+      <Reveal
+        variant="rise"
+        className="group mb-32 grid w-full grid-cols-4 gap-gutter lg:grid-cols-12"
+      >
+        {/* order-1/order-2 keeps the image on top on mobile regardless of which side
+            it sits on at lg. Trippio's image is left/first everywhere, this one is
+            right/second at lg, so without the order swap it would stack below the
+            text on mobile instead of above it. self-start plus a real min-h (rather
+            than the old lg:min-h-[520px] slab) keeps this a bounded frame instead of
+            a box that fills whatever height the row ends up being. */}
+        <div className="relative order-1 col-span-4 h-[320px] self-start overflow-hidden border border-surface-variant transition-colors duration-200 group-hover:border-accent lg:order-2 lg:col-span-6 lg:col-start-7 lg:h-[420px]">
+          <div className="absolute inset-0 z-10 bg-surface-variant/20 transition-colors duration-200 group-hover:bg-transparent" />
+          <Image
+            src="/work/tweetprenuer.png"
+            alt="Tweetprenuer business card generated from an X profile"
+            fill
+            sizes="(min-width: 1024px) 32vw, 100vw"
+            className="object-cover object-top"
+          />
+        </div>
+
+        <div className="order-2 col-span-4 flex flex-col justify-center lg:order-1 lg:col-span-4">
+          <div className="mb-4 flex items-center gap-3 font-mono text-technical-mono text-accent">
+            &gt; ./TWEETPRENUER.exe
+            <span className="animate-pulse text-technical-mono">●</span>
+            <span className="text-outline">LIVE</span>
+          </div>
+          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
+            TWEETPRENUER
+          </h4>
+          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
+            Shipped full-stack AI product: drop an X handle and get a
+            generated, shareable business card. Angular 19 frontend, Express +
+            MongoDB backend with response caching to control API spend, an
+            OpenAI prompt pipeline, and a screenshot share-to-X flow.
+          </p>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {["ANGULAR", "EXPRESS", "MONGODB", "OPENAI"].map((tag) => (
+              <span key={tag} className={tagClass}>
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <DecisionLinks project="TWEETPRENUER" />
+
+          <div className="flex flex-wrap items-center gap-6">
+            <a
+              href="https://tweetprenuer.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open the live Tweetprenuer app"
+              className="group/btn flex w-fit items-center gap-3 border border-surface-variant px-6 py-3 font-display text-label-caps uppercase text-on-surface transition-colors duration-200 hover:border-accent hover:text-accent"
+            >
+              LAUNCH_APP
+              <span
+                aria-hidden="true"
+                className="inline-block transition-transform duration-200 group-hover/btn:translate-x-1"
+              >
+                →
+              </span>
+            </a>
+            <a
+              href="https://github.com/lefkosp/tweetprenuer"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Tweetprenuer source code"
+              className="font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+            >
+              SOURCE ↗
+            </a>
+          </div>
+        </div>
+      </Reveal>
+
+      {/* 04, Hackathon product */}
+      <Reveal
+        variant="rise"
+        className="group relative grid w-full grid-cols-4 gap-gutter border border-surface-variant p-6 transition-colors duration-200 hover:border-accent lg:grid-cols-12 lg:p-10"
+      >
+        <div className="absolute right-0 top-0 h-8 w-8 border-b border-l border-surface-variant transition-colors duration-200 group-hover:border-accent" />
+
+        <div className="col-span-4 flex flex-col lg:col-span-6">
+          <div className="mb-2 font-mono text-technical-mono text-outline">
+            MODULE_04 // FINTECH_HACKATHON
+          </div>
+          <h4 className="mb-6 font-display text-headline-md text-foreground transition-colors duration-200 group-hover:text-accent">
+            PARKIT
+          </h4>
+          <p className="mb-6 font-sans text-body-md text-on-surface-variant">
+            Parking marketplace PWA built for the Bank of Cyprus Fintech
+            Hackathon: live map with geolocation, booking flow, QR check-in,
+            realtime payment events over WebSockets, push notifications, and a
+            vendor dashboard, end to end against a deployed backend.
+          </p>
+          <div className="mb-8 flex flex-wrap gap-2">
+            {["ANGULAR", "LEAFLET", "SOCKET.IO", "PWA"].map((tag) => (
+              <span key={tag} className={tagClass}>
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <DecisionLinks project="PARKIT" />
+
+          <a
+            href="https://github.com/lefkosp/parkit"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="View Parkit source code"
+            className="mt-auto w-fit font-mono text-technical-mono text-outline transition-colors duration-200 hover:text-accent"
+          >
+            SOURCE ↗
+          </a>
+        </div>
+
+        <div className="col-span-4 lg:col-span-5 lg:col-start-8">
+          <OutputFrame title="booking.socket // live">
+            <div className="flex flex-col gap-1 text-on-surface-variant">
+              <span>
+                <span className="text-outline">12:04:11</span>{" "}
+                <span className="text-accent">connect</span> vendor:LARNACA_04
+              </span>
+              <span>
+                <span className="text-outline">12:04:12</span> slot.reserve →{" "}
+                <span className="text-foreground">B-2291</span>
+              </span>
+              <span>
+                <span className="text-outline">12:04:19</span> qr.scan{" "}
+                <span className="text-accent">CHECK_IN</span> ok
+              </span>
+              <span>
+                <span className="text-outline">12:41:03</span> qr.scan{" "}
+                <span className="text-accent">CHECK_OUT</span> 37m
+              </span>
+              <span>
+                <span className="text-outline">12:41:04</span> payment.settled{" "}
+                <span className="text-foreground">€2.47</span>
+              </span>
+              <span className="text-outline">
+                ── vendor dashboard updated ──
               </span>
             </div>
           </OutputFrame>
