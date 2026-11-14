@@ -27,9 +27,27 @@ export async function generateMetadata({
     return {};
   }
 
+  const title = `${decision.id}: ${decision.title}`;
+  const url = `/decisions/${slug}`;
+
+  // Without its own openGraph block a decision page inherits the root's, and
+  // a shared link would preview as the home page.
   return {
-    title: `${decision.id}: ${decision.title}`,
+    title,
     description: decision.decision,
+    alternates: { canonical: url },
+    openGraph: {
+      title,
+      description: decision.decision,
+      url,
+      siteName: "Lefkos Papapetrou",
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: decision.decision,
+    },
   };
 }
 

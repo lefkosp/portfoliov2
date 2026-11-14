@@ -16,19 +16,21 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
-const siteName = "L.PAPAPETROU // LEAD_FRONTEND_DEVELOPER";
+const SITE_URL = "https://lefkos.dev";
+const siteTitle =
+  "Lefkos Papapetrou, Lead Frontend Developer (React, TypeScript)";
 const siteDescription =
   "Lead frontend developer working in React and TypeScript. Frontend architecture and the shared component library for ClearSkies at Odyssey Cybersecurity.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lefkos.dev"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: siteName,
-    template: "%s // L.PAPAPETROU",
+    default: siteTitle,
+    template: "%s | Lefkos Papapetrou",
   },
   description: siteDescription,
   openGraph: {
-    title: siteName,
+    title: siteTitle,
     description: siteDescription,
     url: "/",
     siteName: "Lefkos Papapetrou",
@@ -37,9 +39,31 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: siteName,
+    title: siteTitle,
     description: siteDescription,
   },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Lefkos Papapetrou",
+  jobTitle: "Lead Frontend Developer",
+  url: SITE_URL,
+  sameAs: [
+    "https://github.com/lefkosp",
+    "https://www.linkedin.com/in/lefkosp/",
+  ],
+  worksFor: {
+    "@type": "Organization",
+    name: "Odyssey Cybersecurity",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Nicosia",
+    addressCountry: "CY",
+  },
+  knowsAbout: ["React", "TypeScript", "Frontend architecture", "Design systems"],
 };
 
 /* Runs during HTML parse, before first paint. Reveal's hidden waiting state is
@@ -59,6 +83,12 @@ export default function RootLayout({
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: jsFlagScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
       </head>
       <body
         className="relative min-h-full bg-background font-sans text-body-md text-foreground"

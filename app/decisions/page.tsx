@@ -1,10 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getDecisions } from "@/lib/decisions";
 
-export const metadata = {
-  title: "DECISION_LOG",
-  description:
-    "Architecture decision records from real projects: the constraint, the options rejected, the trade-off paid, and what I'd do differently.",
+const description =
+  "Architecture decision records from real projects: the constraint, the options rejected, the trade-off paid, and what I'd do differently.";
+
+export const metadata: Metadata = {
+  title: "Decision log",
+  description,
+  alternates: { canonical: "/decisions" },
+  openGraph: {
+    title: "Decision log | Lefkos Papapetrou",
+    description,
+    url: "/decisions",
+    siteName: "Lefkos Papapetrou",
+    type: "website",
+  },
 };
 
 export default async function DecisionsPage() {
