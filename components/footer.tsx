@@ -25,7 +25,7 @@ const links = [
     href: "https://github.com/lefkosp/portfoliov2",
     external: true,
   },
-  { label: "CONTACT_SECURE", href: "mailto:paplefkos@gmail.com", external: false },
+  { label: "EMAIL", href: "mailto:paplefkos@gmail.com", external: false },
 ];
 
 export function Footer() {
